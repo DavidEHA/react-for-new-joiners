@@ -1,10 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
 
-import uiSlice from './ui-slice';
-import cartSlice from './cart-slice';
+import interviewersSlice from "./interviewers-slice";
+import candidatesSlice from "./candidates-slice";
+import headerSlice from "./interviewers-slice";
 
 const store = configureStore({
-  reducer: { ui: uiSlice.reducer, cart: cartSlice.reducer },
+  reducer: {
+    interviewers: interviewersSlice.reducer,
+    candidates: candidatesSlice.reducer,
+    header: headerSlice.reducer,
+  },
 });
 
 export default store;
