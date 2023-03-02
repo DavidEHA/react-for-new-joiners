@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const headerSlice = createSlice({
   name: "header",
   initialState: {
-    title: "",
+    title: "Interviewers Dashboard",
   },
   reducers: {
     replaceHeader(state, action) {

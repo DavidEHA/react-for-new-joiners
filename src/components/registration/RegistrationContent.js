@@ -2,11 +2,12 @@ import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined";
 import { Fab } from "@mui/material";
 import { useDispatch } from 'react-redux';
 import { modalActions } from "../../store/modal-slice";
+import { useSelector } from "react-redux";
+
 
 
 const RegistrationContent = () => {
-  let userType = "candidate";
-
+  const userType = useSelector((state) => state.modal.userType);
   const dispatch = useDispatch();
   const openModal = () => {
     dispatch(modalActions.toggleOpenModal(true));
