@@ -5,7 +5,7 @@ import { modalReducer } from "../../modal-hooks/useModal";
 
 const InterviwerModalContent = () => {
   const userId = 1;
-  const [state, dispatch] = useReducer(modalReducer, {
+  const [state, modalDispatch] = useReducer(modalReducer, {
     name: "",
     id: "",
     eid: "",
@@ -35,7 +35,7 @@ const InterviwerModalContent = () => {
           type={input.type}
           placeholder={input.placeholder}
           onChange={(e) => {
-            dispatch({ type: input.action, payload: e.target.value });
+            modalDispatch({ type: input.action, payload: e.target.value });
           }}
         />
       ))}

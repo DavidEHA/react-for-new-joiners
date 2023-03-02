@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 const BottomButtons = () => {
   const [showRightButtonIcon, setShowRightButtonIcon] = useState(true);
-  const rightButtonDisabled = false;
+  const rightButtonDisabled = true;
   const rightButtonTitle = "Continue";
   const showLeftButton = false;
 

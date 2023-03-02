@@ -1,8 +1,16 @@
 import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined";
 import { Fab } from "@mui/material";
+import { useDispatch } from 'react-redux';
+import { modalActions } from "../../store/modal-slice";
+
 
 const RegistrationContent = () => {
   let userType = "candidate";
+
+  const dispatch = useDispatch();
+  const openModal = () => {
+    dispatch(modalActions.toggleOpenModal(true));
+  };
 
   return (
     <>
@@ -10,8 +18,8 @@ const RegistrationContent = () => {
       <Fab
         title={`Add ${userType}`}
         color="primary"
-        // onClick={handleClickOpen}
         style={{ marginBottom: "10px" }}
+        onClick={openModal}
       >
         <PersonAddOutlinedIcon />
       </Fab>

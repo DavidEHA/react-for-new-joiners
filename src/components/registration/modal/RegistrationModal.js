@@ -6,8 +6,12 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import CandidateModalContent from "./CandidateModalContent";
 import InterviwerModalContent from "./InterviwerModalContent";
+import { useSelector } from "react-redux";
 
 const RegistrationModal = () => {
+
+  const openModal = useSelector((state) => state.modal.open);
+
   const leftButtonName = "Cancel";
   const rightButtonName = "Save";
   const showInputsFor = "Candidate";
@@ -15,14 +19,20 @@ const RegistrationModal = () => {
     interviewer: "Interviewer",
     candidate: "Candidate",
   };
+
   const [open, setOpen] = useState(true);
+
   const handleClose = () => {
     setOpen(false);
+  };
+  const handleOnSubmit = () => {
+    setOpen(false);
+    console.log("hola")
   };
 
   return (
     <>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={openModal} onClose={handleClose}>
         <DialogTitle textAlign={"center"}>Add {showInputsFor}</DialogTitle>
         <DialogContent>
           <>
@@ -43,7 +53,7 @@ const RegistrationModal = () => {
               marginBottom: "10px",
             }}
             variant="contained"
-            onClick={handleClose}
+            onClick={handleOnSubmit}
           >
             {rightButtonName}
           </Button>

@@ -14,7 +14,7 @@ const candidateTypes = {
 };
 
 const CandidateModalContent = () => {
-  const [state, dispatch] = useReducer(modalReducer, {
+  const [state, modalDispatch] = useReducer(modalReducer, {
     name: "",
     email: "",
     type: "",
@@ -36,7 +36,7 @@ const CandidateModalContent = () => {
           type={input.type}
           placeholder={input.placeholder}
           onChange={(e) => {
-            dispatch({ type: input.action, payload: e.target.value });
+            modalDispatch({ type: input.action, payload: e.target.value });
           }}
         />
       ))}
@@ -49,7 +49,7 @@ const CandidateModalContent = () => {
             id="candidates-types"
             value={state.type}
             onChange={(e) => {
-              dispatch({
+              modalDispatch({
                 type: "update_candidate_type",
                 payload: e.target.value,
               });
