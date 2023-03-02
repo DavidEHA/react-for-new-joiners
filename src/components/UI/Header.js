@@ -1,14 +1,7 @@
-
 const Header = () => {
+  const title = "Titulo";
 
-const title = "Titulo"
-
-
-  return (
-    <section className="header">
-      <text>{title}</text>
-    </section>
-  );
+  return <section className="header">{title}</section>;
 };
 
 export default Header;

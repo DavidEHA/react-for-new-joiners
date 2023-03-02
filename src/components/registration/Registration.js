@@ -1,6 +1,6 @@
 import BottomButtons from "../UI/BottomButtons";
 import RegistrationContent from "./RegistrationContent";
-import RegistrationModal from "./RegistrationModal";
+import RegistrationModal from "./modal/RegistrationModal";
 
 const Registration = () => {
   return (

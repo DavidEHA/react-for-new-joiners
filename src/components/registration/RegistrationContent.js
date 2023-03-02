@@ -2,14 +2,11 @@ import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined";
 import { Fab } from "@mui/material";
 
 const RegistrationContent = () => {
-
-  let userType = "interviwer";
+  let userType = "candidate";
 
   return (
     <>
-      <text style={{ marginBottom: "15px" }}>
-        No {userType} has been registred
-      </text>
+      <p style={{ marginBottom: "15px" }}>No {userType} has been registred</p>
       <Fab
         title={`Add ${userType}`}
         color="primary"
