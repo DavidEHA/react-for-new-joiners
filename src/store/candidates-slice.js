@@ -14,7 +14,7 @@ const candidatesSlice = createSlice({
       const newUser = action.payload;
       const existingUser = state.info.find((user) => user.id === newUser.id);
       state.changed = true;
-      if (existingUser) return;
+      if (existingUser) return state
       state.info.push({
         id: newUser.id,
         name: newUser.name,

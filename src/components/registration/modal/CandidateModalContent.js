@@ -6,48 +6,19 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useReducer } from "react";
-
-const initialState = {
-  name: String,
-  email: String,
-  type: "",
-};
-
-const CANDIDATE_ACTIONS = {
-  name: "update_candidate_name",
-  email: "update_candidate_email",
-  type: "update_candidate_type",
-};
+import { modalReducer } from "../../modal-hooks/useModal";
 
 const candidateTypes = {
   internal: "Internal",
   external: "External",
 };
 
-function reducer(state, action) {
-  switch (action.type) {
-    case CANDIDATE_ACTIONS.name:
-      return {
-        ...state,
-        name: action.payload,
-      };
-    case CANDIDATE_ACTIONS.email:
-      return {
-        ...state,
-        email: action.payload,
-      };
-    case CANDIDATE_ACTIONS.type:
-      return {
-        ...state,
-        type: action.payload,
-      };
-    default:
-      throw Error("Unknown action: " + action.type);
-  }
-}
-
 const CandidateModalContent = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(modalReducer, {
+    name: "",
+    email: "",
+    type: "",
+  });
   console.log(state);
 
   return (
@@ -72,13 +43,16 @@ const CandidateModalContent = () => {
       {/* <BasicSelect/> */}
       <Box sx={{ minWidth: 120, marginTop: "5px" }}>
         <FormControl fullWidth>
-          <InputLabel id="candidates-types" >Type *</InputLabel>
+          <InputLabel id="candidates-types">Type *</InputLabel>
           <Select
             labelId="candidates-types"
             id="candidates-types"
             value={state.type}
             onChange={(e) => {
-              dispatch({ type: "update_candidate_type", payload: e.target.value });
+              dispatch({
+                type: "update_candidate_type",
+                payload: e.target.value,
+              });
             }}
             label="Type *"
           >
