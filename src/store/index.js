@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import interviewersSlice from "./interviewers-slice";
+import interviewersSlice from "./header-slice";
 import candidatesSlice from "./candidates-slice";
-import headerSlice from "./interviewers-slice";
+import headerSlice from "./header-slice";
 
 const store = configureStore({
   reducer: {

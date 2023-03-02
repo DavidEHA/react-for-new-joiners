@@ -1,17 +1,35 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const headerSlice = createSlice({
-  name: "header",
+const interviewersSlice = createSlice({
+  name: "interviewers",
   initialState: {
-    title: "",
+    info: [],
+    changed: false,
   },
   reducers: {
-    replaceHeader(state, action) {
-      state.title = action.payload;
+    replaceInterviewers(state, action) {
+      state.info = action.payload.info;
+    },
+    addUserToInterviewers(state, action) {
+      const newUser = action.payload;
+      const existingUser = state.info.find((user) => user.id === newUser.id);
+      state.changed = true;
+      if (existingUser) return;
+      state.info.push({
+        id: newUser.id,
+        name: newUser.name,
+        eid: newUser.eid,
+        interviewed: 0,
+      });
+    },
+    removeUserFromInterviewers(state, action) {
+      const id = action.payload;
+      state.info = state.info.filter((user) => user.id !== id);
+      state.changed = true;
     },
   },
 });
 
-export const headerActions = headerSlice.actions;
+export const interviewersActions = interviewersSlice.actions;
 
-export default headerSlice;
+export default interviewersSlice;
