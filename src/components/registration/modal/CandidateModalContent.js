@@ -7,12 +7,17 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { candidateType } from "../../../utils/data";
 
-const CandidateModalContent = ({state, modalDispatch}) => {
+const CandidateModalContent = ({ state, modalDispatch, candidateId }) => {
+  const getValue = (input) => {
+    if (input.id === "name") return state.name;
+    if (input.id === "eMail") return state.eMail;
+  };
 
   return (
     <>
       {candidateInputs.map((input) => (
         <TextField
+          value={getValue(input)}
           key={input.id}
           autoFocus={input.id === "name" && true}
           margin="dense"

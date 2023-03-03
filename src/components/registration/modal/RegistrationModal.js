@@ -13,6 +13,7 @@ import { useReducer } from "react";
 import { modalReducer } from "../../modal-hooks/useModal";
 import { userRoles } from "../../../utils/data";
 import { candidatesActions } from "../../../store/candidates-slice";
+import { GENERAL_ACTIONS } from "../../modal-hooks/useModal";
 
 const INITIAL_INTERVIEWER_STATE = {
   name: "",
@@ -64,16 +65,17 @@ const RegistrationModal = () => {
     if (showInputsFor === userRoles.candidate) {
       dispatch(candidatesActions.addUserToCandidates({ ...state, id: id }));
     }
+    closeModal();
   };
 
   const closeModal = () => {
     dispatch(modalActions.toggleOpenModal(false));
+    modalDispatch({ type: GENERAL_ACTIONS.reset });
   };
 
   const handleOnSubmit = () => {
     const id = getId();
     updateUserData(id);
-    dispatch(modalActions.toggleOpenModal(false));
   };
 
   return (
@@ -93,6 +95,7 @@ const RegistrationModal = () => {
               <CandidateModalContent
                 state={state}
                 modalDispatch={modalDispatch}
+                candidateId={candidateId}
               />
             )}
           </>

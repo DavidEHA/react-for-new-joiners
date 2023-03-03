@@ -1,4 +1,3 @@
-
 export const CANDIDATE_ACTIONS = {
   name: "update_candidate_name",
   eMail: "update_candidate_email",
@@ -6,13 +5,16 @@ export const CANDIDATE_ACTIONS = {
 };
 
 export const INTERVIEWER_ACTIONS = {
-    name: "update_interviewer_name",
-    id: "update_interviewer_id",
-    eid: "update_interviewer_eid",
-  };
+  name: "update_interviewer_name",
+  id: "update_interviewer_id",
+  eid: "update_interviewer_eid",
+};
 
+export const GENERAL_ACTIONS = {
+  reset: "reset",
+};
 
-export function modalReducer (state, action) {
+export function modalReducer(state, action) {
   switch (action.type) {
     case INTERVIEWER_ACTIONS.name:
       return {
@@ -43,6 +45,10 @@ export function modalReducer (state, action) {
       return {
         ...state,
         type: action.payload,
+      };
+    case GENERAL_ACTIONS.reset:
+      return {
+        state: {},
       };
     default:
       throw Error("Unknown action: " + action.type);
