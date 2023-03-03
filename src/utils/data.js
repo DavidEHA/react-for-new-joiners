@@ -9,3 +9,8 @@ export const userRoles = {
   interviewer:"interviewer",
   candidate:"candidate"
 };
+
+export const candidateType = {
+  internal:"Internal",
+  external:"External"
+};

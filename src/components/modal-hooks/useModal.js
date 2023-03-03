@@ -1,7 +1,7 @@
 
 export const CANDIDATE_ACTIONS = {
   name: "update_candidate_name",
-  email: "update_candidate_email",
+  eMail: "update_candidate_email",
   type: "update_candidate_type",
 };
 
@@ -34,10 +34,10 @@ export function modalReducer (state, action) {
         ...state,
         name: action.payload,
       };
-    case CANDIDATE_ACTIONS.email:
+    case CANDIDATE_ACTIONS.eMail:
       return {
         ...state,
-        email: action.payload,
+        eMail: action.payload,
       };
     case CANDIDATE_ACTIONS.type:
       return {

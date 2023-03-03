@@ -12,7 +12,17 @@ import { useDispatch } from "react-redux";
 import { useReducer } from "react";
 import { modalReducer } from "../../modal-hooks/useModal";
 import { userRoles } from "../../../utils/data";
-import { useCallback } from "react";
+import { candidatesActions } from "../../../store/candidates-slice";
+
+const INITIAL_INTERVIEWER_STATE = {
+  name: "",
+  eid: "",
+};
+const INITIAL_CANDIDATE_STATE = {
+  name: "",
+  eMail: "",
+  type: "",
+};
 
 const RegistrationModal = () => {
   const openModal = useSelector((state) => state.modal.open);
@@ -23,47 +33,48 @@ const RegistrationModal = () => {
   const interviewerId = interviewers.length;
   const candidates = useSelector((state) => state.candidates.info);
   const candidateId = candidates.length;
+  const dispatch = useDispatch();
 
-  const initialInterviewerState = {
-    name: "",
-    eid: "",
+  const getId = () => {
+    let id = Number;
+    if (showInputsFor === userRoles.interviewer) {
+      return (id = interviewerId);
+    }
+    if (showInputsFor === userRoles.candidate) {
+      return (id = candidateId);
+    }
+    return id;
   };
-
-  const initialCandidateState = {
-    name: "",
-    email: "",
-    type: "",
-  };
-
-  console.log(initialInterviewerState);
-  console.log(interviewers);
-  console.log(interviewerId);
 
   const getInitialState = () => {
     if (showInputsFor === userRoles.interviewer) {
-      return initialInterviewerState;
+      return INITIAL_INTERVIEWER_STATE;
     }
     if (showInputsFor === userRoles.candidate) {
-      return initialCandidateState;
+      return INITIAL_CANDIDATE_STATE;
     }
   };
 
   const [state, modalDispatch] = useReducer(modalReducer, getInitialState());
 
-  const dispatch = useDispatch();
-  const inputTypes = {
-    interviewer: "interviewer",
-    candidate: "candidate",
+  const updateUserData = (id) => {
+    if (showInputsFor === userRoles.interviewer) {
+      dispatch(interviewersActions.addUserToInterviewers({ ...state, id: id }));
+    }
+    if (showInputsFor === userRoles.candidate) {
+      dispatch(candidatesActions.addUserToCandidates({ ...state, id: id }));
+    }
   };
 
   const closeModal = () => {
     dispatch(modalActions.toggleOpenModal(false));
   };
-  
-  const handleOnSubmit = useCallback(() => {
+
+  const handleOnSubmit = () => {
+    const id = getId();
+    updateUserData(id);
     dispatch(modalActions.toggleOpenModal(false));
-    dispatch(interviewersActions.addUserToInterviewers({ ...state, id: interviewerId }));
-  }, [dispatch, interviewerId, state]);
+  };
 
   return (
     <>
@@ -71,14 +82,14 @@ const RegistrationModal = () => {
         <DialogTitle textAlign={"center"}>Add {showInputsFor}</DialogTitle>
         <DialogContent>
           <>
-            {showInputsFor === inputTypes.interviewer && (
+            {showInputsFor === userRoles.interviewer && (
               <InterviwerModalContent
                 state={state}
                 modalDispatch={modalDispatch}
                 interviewerId={interviewerId}
               />
             )}
-            {showInputsFor === inputTypes.candidate && (
+            {showInputsFor === userRoles.candidate && (
               <CandidateModalContent
                 state={state}
                 modalDispatch={modalDispatch}

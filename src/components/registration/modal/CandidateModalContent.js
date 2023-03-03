@@ -5,7 +5,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { userRoles } from "../../../utils/data";
+import { candidateType } from "../../../utils/data";
 
 const CandidateModalContent = ({state, modalDispatch}) => {
 
@@ -28,7 +28,6 @@ const CandidateModalContent = ({state, modalDispatch}) => {
           }}
         />
       ))}
-      {/* <BasicSelect/> */}
       <Box sx={{ minWidth: 120, marginTop: "5px" }}>
         <FormControl fullWidth>
           <InputLabel id="candidates-types">Type *</InputLabel>
@@ -44,11 +43,11 @@ const CandidateModalContent = ({state, modalDispatch}) => {
             }}
             label="Type *"
           >
-            <MenuItem value={userRoles.internal}>
-              {userRoles.internal}
+            <MenuItem value={candidateType.internal}>
+              {candidateType.internal}
             </MenuItem>
-            <MenuItem value={userRoles.external}>
-              {userRoles.external}
+            <MenuItem value={candidateType.external}>
+              {candidateType.external}
             </MenuItem>
           </Select>
         </FormControl>
