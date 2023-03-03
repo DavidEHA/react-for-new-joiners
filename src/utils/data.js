@@ -4,3 +4,8 @@ export const titles = {
   interviewQuestions: "Interview Questions",
   summaryOfTheInterview: "Summary of the Interview",
 };
+
+export const userRoles = {
+  interviewer:"interviewer",
+  candidate:"candidate"
+};

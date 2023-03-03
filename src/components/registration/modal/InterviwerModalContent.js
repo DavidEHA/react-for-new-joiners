@@ -1,19 +1,10 @@
 import { TextField } from "@mui/material";
 import { interviewerInputs } from "../../../utils/inputs-list";
-import { useReducer } from "react";
-import { modalReducer } from "../../modal-hooks/useModal";
 
-const InterviwerModalContent = () => {
-  const userId = 1;
-  const [state, modalDispatch] = useReducer(modalReducer, {
-    name: "",
-    id: "",
-    eid: "",
-  });
-  console.log(state);
+const InterviwerModalContent = ({state, modalDispatch, interviewerId}) => {
 
   const getValue = (input) => {
-    if (input.id === "id") return userId;
+    if (input.id === "id") return interviewerId;
     if (input.id === "name") return state.name;
     if (input.id === "eid") return state.eid;
   };

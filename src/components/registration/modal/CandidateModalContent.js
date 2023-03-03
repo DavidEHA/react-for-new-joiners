@@ -5,21 +5,9 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { useReducer } from "react";
-import { modalReducer } from "../../modal-hooks/useModal";
+import { userRoles } from "../../../utils/data";
 
-const candidateTypes = {
-  internal: "Internal",
-  external: "External",
-};
-
-const CandidateModalContent = () => {
-  const [state, modalDispatch] = useReducer(modalReducer, {
-    name: "",
-    email: "",
-    type: "",
-  });
-  console.log(state);
+const CandidateModalContent = ({state, modalDispatch}) => {
 
   return (
     <>
@@ -56,11 +44,11 @@ const CandidateModalContent = () => {
             }}
             label="Type *"
           >
-            <MenuItem value={candidateTypes.internal}>
-              {candidateTypes.internal}
+            <MenuItem value={userRoles.internal}>
+              {userRoles.internal}
             </MenuItem>
-            <MenuItem value={candidateTypes.external}>
-              {candidateTypes.external}
+            <MenuItem value={userRoles.external}>
+              {userRoles.external}
             </MenuItem>
           </Select>
         </FormControl>

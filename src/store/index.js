@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-
-import interviewersSlice from "./header-slice";
+import interviewersSlice from "./interviewers-slice";
 import candidatesSlice from "./candidates-slice";
 import headerSlice from "./header-slice";
 import bottomButtonsSlice from "./bottom-buttons-slice";
