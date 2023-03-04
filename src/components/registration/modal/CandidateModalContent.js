@@ -7,8 +7,9 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { candidateType } from "../../../utils/data";
 
-const CandidateModalContent = ({ state, modalDispatch, candidateId }) => {
+const CandidateModalContent = ({ state, modalDispatch }) => {
   const getValue = (input) => {
+    if (state.name || state.email === undefined) return "";
     if (input.id === "name") return state.name;
     if (input.id === "eMail") return state.eMail;
   };

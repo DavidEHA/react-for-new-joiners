@@ -4,6 +4,7 @@ import candidatesSlice from "./candidates-slice";
 import headerSlice from "./header-slice";
 import bottomButtonsSlice from "./bottom-buttons-slice";
 import modalSlice from "./modal-slice";
+import pagesSlice from "./pages-slice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,8 @@ const store = configureStore({
     header: headerSlice.reducer,
     bottomButtons: bottomButtonsSlice.reducer,
     modal: modalSlice.reducer,
+    pages: pagesSlice.reducer,
+
   },
 });
 

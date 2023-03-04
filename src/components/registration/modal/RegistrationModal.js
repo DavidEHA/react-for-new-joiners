@@ -14,18 +14,22 @@ import { modalReducer } from "../../modal-hooks/useModal";
 import { userRoles } from "../../../utils/data";
 import { candidatesActions } from "../../../store/candidates-slice";
 import { GENERAL_ACTIONS } from "../../modal-hooks/useModal";
+import { pagesActions } from "../../../store/pages-slice";
 
-const INITIAL_INTERVIEWER_STATE = {
-  name: "",
-  eid: "",
-};
-const INITIAL_CANDIDATE_STATE = {
-  name: "",
-  eMail: "",
-  type: "",
-};
+
 
 const RegistrationModal = () => {
+
+  const INITIAL_INTERVIEWER_STATE = {
+    name: "",
+    eid: "",
+  };
+  const INITIAL_CANDIDATE_STATE = {
+    name: "",
+    eMail: "",
+    type: "",
+  };
+  
   const openModal = useSelector((state) => state.modal.open);
   const showInputsFor = useSelector((state) => state.modal.userType);
   const rightButtonName = useSelector((state) => state.modal.rightButtonName);
@@ -34,7 +38,13 @@ const RegistrationModal = () => {
   const interviewerId = interviewers.length;
   const candidates = useSelector((state) => state.candidates.info);
   const candidateId = candidates.length;
+  const registrationPage = useSelector((state) => state.pages.interviewersRegistration);
+
   const dispatch = useDispatch();
+
+  if(interviewers.length > 0){
+    dispatch(pagesActions.toggleInterviewersRegistration(false));
+  }
 
   const getId = () => {
     let id = Number;
