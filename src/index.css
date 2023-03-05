@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
 
 * {
   box-sizing: border-box;
@@ -69,4 +69,12 @@ body {
   padding: 0.5rem 5%;
 }
 
+.interviewers-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 330px));
+  grid-auto-rows: minmax(150px, 210px);
+  grid-gap: 5px;
+  margin-left: 30px;
+  margin-top: 30px;
+}
 

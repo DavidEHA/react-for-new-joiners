@@ -1,10 +1,8 @@
 import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined";
 import { Fab } from "@mui/material";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { modalActions } from "../../store/modal-slice";
 import { useSelector } from "react-redux";
-
-
 
 const RegistrationContent = () => {
   const userType = useSelector((state) => state.modal.userType);
@@ -14,7 +12,7 @@ const RegistrationContent = () => {
   };
 
   return (
-    <>
+    <div className="registration-content">
       <p style={{ marginBottom: "15px" }}>No {userType} has been registred</p>
       <Fab
         title={`Add ${userType}`}
@@ -25,7 +23,7 @@ const RegistrationContent = () => {
         <PersonAddOutlinedIcon />
       </Fab>
       <i style={{ fontSize: 10 }}>Click here to add</i>
-    </>
+    </div>
   );
 };
 
