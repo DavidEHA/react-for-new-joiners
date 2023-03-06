@@ -5,17 +5,21 @@ const bottomButtonsSlice = createSlice({
   initialState: {
     rightButtonDisabled: true,
     rightButtonTitle: "Continue",
+    showRightButtonIcon: true,
     showLeftButton: false,
   },
   reducers: {
-    toggleRightButtonDisabled(state) {
-      state.rightButtonDisabled = !state.rightButtonDisabled
+    toggleRightButtonDisabled(state, action) {
+      state.rightButtonDisabled = action.payload
     },
     changeRightButtonTitle(state, action) {
       state.rightButtonTitle = action.payload;
     },
-    toggleShowLeftButton(state) {
-      state.showLeftButton = !state.showLeftButton
+    toggleShowRightButtonIcon(state, action) {
+      state.showRightButtonIcon = action.payload;
+    },
+    toggleShowLeftButton(state, action) {
+      state.showLeftButton = action.payload;
     },
   },
 });

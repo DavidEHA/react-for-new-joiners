@@ -1,21 +1,35 @@
 import { Button } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { NavigateBefore } from "@mui/icons-material";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { bottomButtonsActions } from "../../store/bottom-buttons-slice";
+import { useDispatch } from "react-redux";
 
 const BottomButtons = () => {
-  const [showRightButtonIcon, setShowRightButtonIcon] = useState(true);
-  const rightButtonDisabled = true;
-  const rightButtonTitle = "Continue";
-  const showLeftButton = false;
+  const rightButtonDisabled = useSelector(
+    (state) => state.bottomButtons.rightButtonDisabled
+  );
+  const rightButtonTitle = useSelector(
+    (state) => state.bottomButtons.rightButtonTitle
+  );
+  const showLeftButton = useSelector(
+    (state) => state.bottomButtons.showLeftButton
+  );
+  const showRightButtonIcon = useSelector(
+    (state) => state.bottomButtons.showRightButtonIcon
+  );
+  const dispatch = useDispatch();
+
+  console.log(showLeftButton)
 
   useEffect(() => {
     if (rightButtonTitle !== "Continue") {
-      setShowRightButtonIcon(false);
+      dispatch(bottomButtonsActions.toggleShowRightButtonIcon(false));
       return;
     }
-    setShowRightButtonIcon(true);
-  }, [rightButtonTitle]);
+    dispatch(bottomButtonsActions.toggleShowRightButtonIcon(true));
+  }, [rightButtonTitle, dispatch]);
 
   return (
     <div

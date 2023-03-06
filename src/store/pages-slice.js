@@ -3,11 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 const pagesSlice = createSlice({
   name: "pages",
   initialState: {
-    interviewersRegistration: true
+    interviewersRegistration: true,
+    interviewersSelected: false,
   },
   reducers: {
     toggleInterviewersRegistration(state, action) {
-      state.interviewersRegistration = action.payload
+      state.interviewersRegistration = action.payload;
+    },
+    toggleInterviewersSelected(state, action) {
+      state.interviewersRegistration = action.payload;
     },
   },
 });

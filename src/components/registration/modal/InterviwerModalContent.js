@@ -4,7 +4,8 @@ import { interviewerInputs } from "../../../utils/inputs-list";
 const InterviwerModalContent = ({ state, modalDispatch, interviewerId }) => {
   const getValue = (input) => {
     if (input.id === "id") return interviewerId;
-    if (state.name || state.eid === undefined) return "";
+    if (state.eid === undefined) return "";
+    if (state.name  === undefined) return "";
     if (input.id === "name") return state.name;
     if (input.id === "eid") return state.eid;
   };

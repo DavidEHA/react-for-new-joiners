@@ -20,7 +20,7 @@ const Registration = () => {
       <div className="registration">
         {registrationPage && <RegistrationContent />}
         <RegistrationModal />
-        <BottomButtons />
+        {registrationPage && <BottomButtons />}
       </div>
     </>
   );
