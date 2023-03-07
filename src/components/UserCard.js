@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useRef } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -8,13 +8,17 @@ import { useDispatch } from "react-redux";
 import { bottomButtonsActions } from "../store/bottom-buttons-slice";
 
 const UserCard = () => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const interviewers = useSelector((state) => state.interviewers.info);
+  const isSelected = useRef(false);
 
   const selectInterviewer = (id) => {
-    dispatch(pagesActions.toggleInterviewersSelected(id));
-    dispatch(bottomButtonsActions.toggleRightButtonDisabled(false));
+    isSelected.current = !isSelected.current;
+    const selectedState = isSelected.current;
+    dispatch(bottomButtonsActions.toggleRightButtonDisabled(!selectedState));
+    isSelected.current === true
+      ? dispatch(pagesActions.toggleInterviewersSelected(id))
+      : dispatch(pagesActions.toggleInterviewersSelected(null));
   };
 
   return (
