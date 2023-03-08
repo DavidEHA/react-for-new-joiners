@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { NavigateBefore } from "@mui/icons-material";
 import { useSelector } from "react-redux";
-import { usePageController } from "../usePageController";
+import { usePageController } from "../../custom-hooks/usePageController";
 
 const BottomButtons = () => {
   const rightButtonDisabled = useSelector(

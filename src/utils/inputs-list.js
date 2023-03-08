@@ -1,7 +1,7 @@
 import {
   CANDIDATE_ACTIONS,
   INTERVIEWER_ACTIONS,
-} from "../components/modal-hooks/useModal";
+} from "../custom-hooks/useModal";
 
 export const interviewerInputs = [
   {
