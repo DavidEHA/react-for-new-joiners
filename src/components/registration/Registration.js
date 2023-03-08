@@ -4,6 +4,7 @@ import RegistrationModal from "./modal/RegistrationModal";
 import { useSelector } from "react-redux";
 import { pagesActions } from "../../store/pages-slice";
 import { useDispatch } from "react-redux";
+import { bottomButtonsActions } from "../../store/bottom-buttons-slice";
 
 const Registration = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const Registration = () => {
   );
   if (interviewers.length > 0) {
     dispatch(pagesActions.toggleInterviewersRegistration(false));
+    dispatch(bottomButtonsActions.toggleShowRightButton(true));
   }
 
   return (

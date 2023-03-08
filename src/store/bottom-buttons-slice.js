@@ -5,6 +5,7 @@ const bottomButtonsSlice = createSlice({
   initialState: {
     rightButtonDisabled: true,
     rightButtonTitle: "Continue",
+    showRightButton: false,
     showRightButtonIcon: true,
     showLeftButton: false,
   },
@@ -14,6 +15,9 @@ const bottomButtonsSlice = createSlice({
     },
     changeRightButtonTitle(state, action) {
       state.rightButtonTitle = action.payload;
+    },
+    toggleShowRightButton(state, action) {
+      state.showRightButton = action.payload;
     },
     toggleShowRightButtonIcon(state, action) {
       state.showRightButtonIcon = action.payload;

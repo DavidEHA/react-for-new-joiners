@@ -11,7 +11,7 @@ import { interviewersActions } from "../../../store/interviewers-slice";
 import { useDispatch } from "react-redux";
 import { useReducer } from "react";
 import { modalReducer } from "../../modal-hooks/useModal";
-import { userRoles } from "../../../utils/data";
+import { USER_ROLES } from "../../../utils/pages";
 import { candidatesActions } from "../../../store/candidates-slice";
 import { GENERAL_ACTIONS } from "../../modal-hooks/useModal";
 import { INITIAL_CANDIDATE_STATE } from "../../../utils/data";
@@ -31,20 +31,20 @@ const RegistrationModal = () => {
 
   const getId = () => {
     let id = Number;
-    if (showInputsFor === userRoles.interviewer) {
+    if (showInputsFor === USER_ROLES.interviewer) {
       return (id = interviewerId);
     }
-    if (showInputsFor === userRoles.candidate) {
+    if (showInputsFor === USER_ROLES.candidate) {
       return (id = candidateId);
     }
     return id;
   };
 
   const getInitialState = () => {
-    if (showInputsFor === userRoles.interviewer) {
+    if (showInputsFor === USER_ROLES.interviewer) {
       return INITIAL_INTERVIEWER_STATE;
     }
-    if (showInputsFor === userRoles.candidate) {
+    if (showInputsFor === USER_ROLES.candidate) {
       return INITIAL_CANDIDATE_STATE;
     }
   };
@@ -52,10 +52,10 @@ const RegistrationModal = () => {
   const [state, modalDispatch] = useReducer(modalReducer, getInitialState());
 
   const updateUserData = (id) => {
-    if (showInputsFor === userRoles.interviewer) {
+    if (showInputsFor === USER_ROLES.interviewer) {
       dispatch(interviewersActions.addUserToInterviewers({ ...state, id: id }));
     }
-    if (showInputsFor === userRoles.candidate) {
+    if (showInputsFor === USER_ROLES.candidate) {
       dispatch(candidatesActions.addUserToCandidates({ ...state, id: id }));
     }
     closeModal();
@@ -77,14 +77,14 @@ const RegistrationModal = () => {
         <DialogTitle textAlign={"center"}>Add {showInputsFor}</DialogTitle>
         <DialogContent>
           <>
-            {showInputsFor === userRoles.interviewer && (
+            {showInputsFor === USER_ROLES.interviewer && (
               <InterviwerModalContent
                 state={state}
                 modalDispatch={modalDispatch}
                 interviewerId={interviewerId}
               />
             )}
-            {showInputsFor === userRoles.candidate && (
+            {showInputsFor === USER_ROLES.candidate && (
               <CandidateModalContent
                 state={state}
                 modalDispatch={modalDispatch}

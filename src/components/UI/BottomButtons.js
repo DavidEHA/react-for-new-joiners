@@ -16,12 +16,13 @@ const BottomButtons = () => {
   const showLeftButton = useSelector(
     (state) => state.bottomButtons.showLeftButton
   );
+  const showRightButton = useSelector(
+    (state) => state.bottomButtons.showRightButton
+  );
   const showRightButtonIcon = useSelector(
     (state) => state.bottomButtons.showRightButtonIcon
   );
   const dispatch = useDispatch();
-
-  console.log(showLeftButton)
 
   useEffect(() => {
     if (rightButtonTitle !== "Continue") {
@@ -46,9 +47,11 @@ const BottomButtons = () => {
           Back
         </Button>
       )}
-      <Button disabled={rightButtonDisabled} variant="contained">
-        {rightButtonTitle} {showRightButtonIcon && <NavigateNextIcon />}
-      </Button>
+      {showRightButton && (
+        <Button disabled={rightButtonDisabled} variant="contained">
+          {rightButtonTitle} {showRightButtonIcon && <NavigateNextIcon />}
+        </Button>
+      )}
     </div>
   );
 };
