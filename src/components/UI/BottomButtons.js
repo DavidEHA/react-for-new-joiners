@@ -1,10 +1,8 @@
 import { Button } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { NavigateBefore } from "@mui/icons-material";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { bottomButtonsActions } from "../../store/bottom-buttons-slice";
-import { useDispatch } from "react-redux";
+import { usePageController } from "../usePageController";
 
 const BottomButtons = () => {
   const rightButtonDisabled = useSelector(
@@ -22,15 +20,7 @@ const BottomButtons = () => {
   const showRightButtonIcon = useSelector(
     (state) => state.bottomButtons.showRightButtonIcon
   );
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (rightButtonTitle !== "Continue") {
-      dispatch(bottomButtonsActions.toggleShowRightButtonIcon(false));
-      return;
-    }
-    dispatch(bottomButtonsActions.toggleShowRightButtonIcon(true));
-  }, [rightButtonTitle, dispatch]);
+  const { nextPage, prevPage } = usePageController();
 
   return (
     <div
@@ -42,13 +32,17 @@ const BottomButtons = () => {
       }
     >
       {showLeftButton && (
-        <Button variant="contained">
+        <Button onClick={prevPage} variant="contained">
           <NavigateBefore />
           Back
         </Button>
       )}
       {showRightButton && (
-        <Button disabled={rightButtonDisabled} variant="contained">
+        <Button
+          onClick={nextPage}
+          disabled={rightButtonDisabled}
+          variant="contained"
+        >
           {rightButtonTitle} {showRightButtonIcon && <NavigateNextIcon />}
         </Button>
       )}

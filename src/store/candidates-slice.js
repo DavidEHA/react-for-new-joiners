@@ -5,6 +5,7 @@ const candidatesSlice = createSlice({
   initialState: {
     info: [],
     changed: false,
+    candidateSelected: null
   },
   reducers: {
     replaceCandidates(state, action) {
@@ -26,6 +27,10 @@ const candidatesSlice = createSlice({
     removeUserFromCandidates(state, action) {
       const id = action.payload;
       state.info = state.info.filter((user) => user.id !== id);
+      state.changed = true;
+    },
+    selectCandidate(state, action) {
+      state.candidateSelected = action.payload;
       state.changed = true;
     },
   },

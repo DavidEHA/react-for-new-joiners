@@ -25,7 +25,7 @@ export const RIGHT_BUTTON_NAME = {
 
 export const pages = [
   {
-    key: 1,
+    key: 0,
     name: PAGE_NAME.interviewersRegistration,
     ui: {
       header: { title: PAGE_TITLE.interviewersDashboard },
@@ -40,7 +40,7 @@ export const pages = [
     },
   },
   {
-    key: 2,
+    key: 1,
     name: PAGE_NAME.interviewersList,
     ui: {
       header: { title: PAGE_TITLE.interviewersDashboard },
@@ -55,7 +55,7 @@ export const pages = [
     },
   },
   {
-    key: 3,
+    key: 2,
     name: PAGE_NAME.candidateRegistration,
     ui: {
       header: { title: PAGE_TITLE.candidatesDashboard },
@@ -63,14 +63,14 @@ export const pages = [
       bottomButtons: {
         rightButtonDisabled: false,
         rightButtonTitle: RIGHT_BUTTON_NAME.continue,
-        showRightButton: true,
+        showRightButton: false,
         showRightButtonIcon: true,
         showLeftButton: true,
       },
     },
   },
   {
-    key: 4,
+    key: 3,
     name: PAGE_NAME.candidateList,
     ui: {
       header: { title: PAGE_TITLE.candidatesDashboard },
@@ -85,7 +85,7 @@ export const pages = [
     },
   },
   {
-    key: 5,
+    key: 4,
     name: PAGE_NAME.interviewQuestions,
     ui: {
       header: { title: PAGE_TITLE.interviewQuestions},

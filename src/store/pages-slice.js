@@ -3,15 +3,16 @@ import { createSlice } from "@reduxjs/toolkit";
 const pagesSlice = createSlice({
   name: "pages",
   initialState: {
-    interviewersRegistration: true,
-    interviewersSelected: false,
+    info: {},
+    pageIndex: 0,
   },
   reducers: {
-    toggleInterviewersRegistration(state, action) {
-      state.interviewersRegistration = action.payload;
+    changePage(state, action) {
+      state.info = action.payload;
     },
-    toggleInterviewersSelected(state, action) {
-      state.interviewersRegistration = action.payload;
+    changePageIndex(state, action) {
+      console.log(action.payload)
+      state.pageIndex = action.payload;
     },
   },
 });

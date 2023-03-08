@@ -16,9 +16,9 @@ import { candidatesActions } from "../../../store/candidates-slice";
 import { GENERAL_ACTIONS } from "../../modal-hooks/useModal";
 import { INITIAL_CANDIDATE_STATE } from "../../../utils/data";
 import { INITIAL_INTERVIEWER_STATE } from "../../../utils/data";
+import { pagesActions } from "../../../store/pages-slice";
 
 const RegistrationModal = () => {
-  
   const openModal = useSelector((state) => state.modal.open);
   const showInputsFor = useSelector((state) => state.modal.userType);
   const rightButtonName = useSelector((state) => state.modal.rightButtonName);
@@ -54,9 +54,11 @@ const RegistrationModal = () => {
   const updateUserData = (id) => {
     if (showInputsFor === USER_ROLES.interviewer) {
       dispatch(interviewersActions.addUserToInterviewers({ ...state, id: id }));
+      dispatch(pagesActions.changePageIndex(1));
     }
     if (showInputsFor === USER_ROLES.candidate) {
       dispatch(candidatesActions.addUserToCandidates({ ...state, id: id }));
+      dispatch(pagesActions.changePageIndex(2));
     }
     closeModal();
   };
