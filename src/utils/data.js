@@ -9,6 +9,6 @@ export const INITIAL_INTERVIEWER_STATE = {
 };
 export const INITIAL_CANDIDATE_STATE = {
   name: "",
-  eMail: "",
+  email: "",
   type: "",
 };

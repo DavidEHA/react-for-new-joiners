@@ -19,7 +19,7 @@ const candidatesSlice = createSlice({
       state.info.push({
         id: newUser.id,
         name: newUser.name,
-        eMail: newUser.eMail,
+        email: newUser.email,
         type: newUser.type,
         interviewedBy: newUser.interviewedBy
       });

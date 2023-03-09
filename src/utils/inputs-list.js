@@ -21,11 +21,12 @@ export const interviewerInputs = [
   {
     id: "eid",
     label: "EID",
-    type: "eMail",
+    type: "email",
     placeholder: "Type your Enterprise ID",
     action: INTERVIEWER_ACTIONS.eid,
   },
 ];
+
 
 export const candidateInputs = [
   {
@@ -36,11 +37,11 @@ export const candidateInputs = [
     action: CANDIDATE_ACTIONS.name,
   },
   {
-    id: "eMail",
+    id: "email",
     label: "Email",
-    type: "eMail",
+    type: "email",
     placeholder: "Type your Email",
-    action: CANDIDATE_ACTIONS.eMail,
+    action: CANDIDATE_ACTIONS.email,
   },
 ];
 

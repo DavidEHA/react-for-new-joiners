@@ -8,6 +8,12 @@ import Select from "@mui/material/Select";
 import { candidateType } from "../../../utils/data";
 
 const CandidateModalContent = ({ state, modalDispatch }) => {
+  const getValue = (input) => {
+    if (state.name === undefined) return "";
+    if (input.id === "name") return state?.name;
+    if (state.email === undefined) return "";
+    if (input.id === "email") return state.email
+  };
 
   return (
     <>
@@ -15,6 +21,7 @@ const CandidateModalContent = ({ state, modalDispatch }) => {
         <TextField
           key={input.id}
           autoFocus={input.id === "name" && true}
+          value={getValue(input)}
           margin="dense"
           fullWidth
           required
