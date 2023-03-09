@@ -11,7 +11,6 @@ const pagesSlice = createSlice({
       state.info = action.payload;
     },
     changePageIndex(state, action) {
-      console.log(action.payload)
       state.pageIndex = action.payload;
     },
   },

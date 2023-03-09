@@ -19,23 +19,15 @@ const columns = [
     headerName: "Candidate Info",
     width: 200,
   },
-  
 ];
-
-// const rows = [
-//   { id: 1, email: "Snow", typeOfUser: "Jon", age: 35 },
-// ];
 
 export default function DataTable() {
   const candidates = useSelector((state) => state.candidates.info);
-console.log(candidates)
-
-const rows = candidates
 
   return (
     <div className="candidates-table">
       <DataGrid
-        rows={rows}
+        rows={candidates}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
