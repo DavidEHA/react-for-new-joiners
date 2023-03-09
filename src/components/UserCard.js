@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { bottomButtonsActions } from "../store/bottom-buttons-slice";
 import { interviewersActions } from "../store/interviewers-slice";
+import { sideButtonsActions } from "../store/side-buttons-slice";
 
 const UserCard = () => {
   const dispatch = useDispatch();
@@ -16,9 +17,11 @@ const UserCard = () => {
     isSelected.current = !isSelected.current;
     const selectedState = isSelected.current;
     dispatch(bottomButtonsActions.toggleRightButtonDisabled(!selectedState));
+    dispatch(sideButtonsActions.toggleShowMiddleButton(selectedState));
+    dispatch(sideButtonsActions.toggleShowBottomButton(selectedState));
     isSelected.current === true
       ? dispatch(interviewersActions.selectInterviewer(id))
-      : dispatch(interviewersActions.selectInterviewer(null))
+      : dispatch(interviewersActions.selectInterviewer(null));
   };
 
   return (

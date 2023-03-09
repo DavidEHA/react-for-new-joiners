@@ -6,6 +6,7 @@ import bottomButtonsSlice from "./bottom-buttons-slice";
 import modalSlice from "./modal-slice";
 import pagesSlice from "./pages-slice";
 import cardsSlice from "./cards-slice";
+import sideButtonsSlice from "./side-buttons-slice";
 
 const store = configureStore({
   reducer: {
@@ -15,8 +16,8 @@ const store = configureStore({
     bottomButtons: bottomButtonsSlice.reducer,
     modal: modalSlice.reducer,
     pages: pagesSlice.reducer,
-    cards: cardsSlice.reducer
-
+    cards: cardsSlice.reducer,
+    sideButtons: sideButtonsSlice.reducer
   },
 });
 

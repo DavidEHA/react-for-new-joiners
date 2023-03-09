@@ -1,9 +1,9 @@
 import * as React from "react";
 import UserCard from "../components/UserCard";
 import { Typography } from "@mui/material";
+import SideButtons from "../components/UI/SideButtons";
 
 const InterviewersList = () => {
-
   return (
     <>
       <Typography
@@ -13,7 +13,10 @@ const InterviewersList = () => {
       >
         Interviewers list
       </Typography>
-      <UserCard />
+      <div className="interviewers-list-container">
+        <UserCard />
+        <SideButtons />
+      </div>
     </>
   );
 };
