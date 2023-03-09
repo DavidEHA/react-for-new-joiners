@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Typography } from "@mui/material";
 import UserTable from "../components/UserTable";
+import SideButtons from "../components/UI/SideButtons";
 
 const CandidatesList = () => {
-
   return (
     <>
       <Typography
@@ -13,7 +13,10 @@ const CandidatesList = () => {
       >
         Candidates list
       </Typography>
-      <UserTable/>
+      <div className="user-list-container">
+        <UserTable />
+        <SideButtons />
+      </div>
     </>
   );
 };
