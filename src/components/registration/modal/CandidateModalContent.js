@@ -8,18 +8,11 @@ import Select from "@mui/material/Select";
 import { candidateType } from "../../../utils/data";
 
 const CandidateModalContent = ({ state, modalDispatch }) => {
-  const getValue = (input) => {
-    if (state.name === undefined) return "";
-    if (state.email === undefined) return "";
-    if (input.id === "name") return state.name;
-    if (input.id === "eMail") return state.eMail;
-  };
 
   return (
     <>
       {candidateInputs.map((input) => (
         <TextField
-          value={getValue(input)}
           key={input.id}
           autoFocus={input.id === "name" && true}
           margin="dense"
@@ -41,7 +34,7 @@ const CandidateModalContent = ({ state, modalDispatch }) => {
           <Select
             labelId="candidates-types"
             id="candidates-types"
-            value={state.type}
+            value={state.type === undefined ? "" : state.type}
             onChange={(e) => {
               modalDispatch({
                 type: "update_candidate_type",

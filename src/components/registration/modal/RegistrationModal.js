@@ -58,7 +58,7 @@ const RegistrationModal = () => {
     }
     if (showInputsFor === USER_ROLES.candidate) {
       dispatch(candidatesActions.addUserToCandidates({ ...state, id: id }));
-      dispatch(pagesActions.changePageIndex(2));
+      dispatch(pagesActions.changePageIndex(3));
     }
     closeModal();
   };
