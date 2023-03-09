@@ -15,7 +15,7 @@ const HomePage = () => {
       {ready && (
         <>
           <Header />
-          {(pageIndex === 0 || pageIndex === 2) && <Registration />}
+          <Registration />
           {pageIndex === 1 && <InterviewersList />}
           {pageIndex === 3 && <CandidatesList />}
           <BottomButtons />
