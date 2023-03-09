@@ -17,8 +17,7 @@ const UserCard = () => {
     isSelected.current = !isSelected.current;
     const selectedState = isSelected.current;
     dispatch(bottomButtonsActions.toggleRightButtonDisabled(!selectedState));
-    dispatch(sideButtonsActions.toggleShowMiddleButton(selectedState));
-    dispatch(sideButtonsActions.toggleShowBottomButton(selectedState));
+    dispatch(sideButtonsActions.toggleShowSideButtons(selectedState));
     isSelected.current === true
       ? dispatch(interviewersActions.selectInterviewer(id))
       : dispatch(interviewersActions.selectInterviewer(null));

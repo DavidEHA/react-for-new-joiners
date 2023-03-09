@@ -5,11 +5,8 @@ import { EditOutlined } from "@mui/icons-material";
 import { DeleteOutline } from "@mui/icons-material";
 
 const SideButtons = () => {
-  const showMiddleButton = useSelector(
-    (state) => state.sideButtons.showMiddleButton
-  );
-  const showBottomButton = useSelector(
-    (state) => state.sideButtons.showBottomButton
+  const showSideButtons = useSelector(
+    (state) => state.sideButtons.showSideButtons
   );
 
   return (
@@ -17,17 +14,15 @@ const SideButtons = () => {
       <Fab title={"Add user"} color="primary" style={{ marginBottom: "15px" }}>
         <PersonAddOutlinedIcon />
       </Fab>
-      {showMiddleButton && (
-        <Fab
-          title={"Edit user"}
-          color="primary"
-          style={{ marginBottom: "15px" }}
-        >
-          <EditOutlined />
-        </Fab>
-      )}
-      {showBottomButton && (
+      {showSideButtons && (
         <>
+          <Fab
+            title={"Edit user"}
+            color="primary"
+            style={{ marginBottom: "15px" }}
+          >
+            <EditOutlined />
+          </Fab>
           <Fab
             title={"Delete user"}
             color="primary"

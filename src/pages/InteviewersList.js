@@ -13,7 +13,7 @@ const InterviewersList = () => {
       >
         Interviewers list
       </Typography>
-      <div className="interviewers-list-container">
+      <div className="user-list-container">
         <UserCard />
         <SideButtons />
       </div>

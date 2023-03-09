@@ -8,7 +8,7 @@ export const PAGE_NAME = {
   interviewersList: "interviewers_list",
   candidateRegistration: "candidate_registration",
   candidateList: "candidate_list",
-  interviewQuestions:"interview_questions"
+  interviewQuestions: "interview_questions",
 };
 
 export const PAGE_TITLE = {
@@ -37,6 +37,7 @@ export const pages = [
         showRightButtonIcon: true,
         showLeftButton: false,
       },
+      sideButtons: { showSideButtons: false },
     },
   },
   {
@@ -52,6 +53,7 @@ export const pages = [
         showRightButtonIcon: true,
         showLeftButton: false,
       },
+      sideButtons: { showSideButtons: false },
     },
   },
   {
@@ -67,6 +69,7 @@ export const pages = [
         showRightButtonIcon: true,
         showLeftButton: true,
       },
+      sideButtons: { showSideButtons: false },
     },
   },
   {
@@ -82,13 +85,14 @@ export const pages = [
         showRightButtonIcon: true,
         showLeftButton: true,
       },
+      sideButtons: { showSideButtons: false },
     },
   },
   {
     key: 4,
     name: PAGE_NAME.interviewQuestions,
     ui: {
-      header: { title: PAGE_TITLE.interviewQuestions},
+      header: { title: PAGE_TITLE.interviewQuestions },
       showViewFor: USER_ROLES.candidate,
       bottomButtons: {
         rightButtonDisabled: true,
@@ -97,6 +101,7 @@ export const pages = [
         showRightButtonIcon: true,
         showLeftButton: true,
       },
+      sideButtons: { showSideButtons: false },
     },
   },
 ];

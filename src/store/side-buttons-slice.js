@@ -3,15 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const sideButtonsSlice = createSlice({
   name: "sideButtons",
   initialState: {
-    showMiddleButton: false,
-    showBottomButton: false,
+    showSideButtons: false,
   },
   reducers: {
-    toggleShowMiddleButton(state, action) {
-      state.showMiddleButton = action.payload;
-    },
-    toggleShowBottomButton(state, action) {
-      state.showBottomButton = action.payload;
+    toggleShowSideButtons(state, action) {
+      state.showSideButtons = action.payload;
     },
   },
 });
