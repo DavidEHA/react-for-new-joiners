@@ -1,9 +1,9 @@
 import InterviewersList from "./InteviewersList";
-import Registration from "./registration/Registration";
-import Header from "./UI/Header";
+import Registration from "./Registration";
+import Header from "../components/UI/Header";
 import { usePageController } from "../custom-hooks/usePageController";
 import { useSelector } from "react-redux";
-import BottomButtons from "./UI/BottomButtons";
+import BottomButtons from "../components/UI/BottomButtons";
 import CandidatesList from "./CandidatesList";
 
 const HomePage = () => {

@@ -1,5 +1,5 @@
-import RegistrationContent from "./RegistrationContent";
-import RegistrationModal from "./modal/RegistrationModal";
+import RegistrationContent from "../components/registration/RegistrationContent";
+import RegistrationModal from "../components/registration/modal/RegistrationModal";
 
 const Registration = () => {
 

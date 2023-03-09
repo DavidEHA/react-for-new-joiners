@@ -1,8 +1,8 @@
 import * as React from "react";
+import UserCard from "../components/UserCard";
 import { Typography } from "@mui/material";
-import UserTable from "./UserTable";
 
-const CandidatesList = () => {
+const InterviewersList = () => {
 
   return (
     <>
@@ -11,11 +11,11 @@ const CandidatesList = () => {
         color="black"
         gutterBottom
       >
-        Candidates list
+        Interviewers list
       </Typography>
-      <UserTable/>
+      <UserCard />
     </>
   );
 };
 
-export default CandidatesList;
+export default InterviewersList;

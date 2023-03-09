@@ -45,3 +45,23 @@ export const candidateInputs = [
   },
 ];
 
+export const columns = [
+  { field: "id", headerName: "ID", width: 70 },
+  { field: "name", headerName: "Full name", width: 300 },
+  {
+    field: "email",
+    headerName: "Email",
+    width: 300,
+  },
+  {
+    field: "type",
+    headerName: "Type of user",
+    width: 200,
+  },
+  {
+    field: "candidateInfo",
+    headerName: "Candidate Info",
+    width: 200,
+  },
+];
+

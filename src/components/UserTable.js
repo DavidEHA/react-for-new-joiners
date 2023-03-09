@@ -1,28 +1,23 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { useSelector } from "react-redux";
-
-const columns = [
-  { field: "id", headerName: "ID", width: 70 },
-  { field: "name", headerName: "Full name", width: 300 },
-  {
-    field: "email",
-    headerName: "Email",
-    width: 300,
-  },
-  {
-    field: "type",
-    headerName: "Type of user",
-    width: 200,
-  },
-  {
-    field: "candidateInfo",
-    headerName: "Candidate Info",
-    width: 200,
-  },
-];
+import { candidatesActions } from "../store/candidates-slice";
+import { useDispatch } from "react-redux";
+import { bottomButtonsActions } from "../store/bottom-buttons-slice";
+import { columns } from "../utils/inputs-list";
 
 export default function DataTable() {
+  const dispatch = useDispatch();
   const candidates = useSelector((state) => state.candidates.info);
+
+  const handleRowSelection = (rowSelected) => {
+    if (rowSelected.length > 0){
+      dispatch(bottomButtonsActions.toggleRightButtonDisabled(false));
+      dispatch(candidatesActions.selectCandidate(rowSelected[0]));
+      return
+    }
+    dispatch(bottomButtonsActions.toggleRightButtonDisabled(true));
+    dispatch(candidatesActions.selectCandidate(null));
+  };
 
   return (
     <div className="candidates-table">
@@ -32,6 +27,9 @@ export default function DataTable() {
         pageSize={5}
         rowsPerPageOptions={[5]}
         checkboxSelection
+        onRowSelectionModelChange={(rowSelected) => {
+          handleRowSelection(rowSelected);
+        }}
       />
     </div>
   );

@@ -3,7 +3,6 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
-import { pagesActions } from "../store/pages-slice";
 import { useDispatch } from "react-redux";
 import { bottomButtonsActions } from "../store/bottom-buttons-slice";
 import { interviewersActions } from "../store/interviewers-slice";
@@ -19,7 +18,7 @@ const UserCard = () => {
     dispatch(bottomButtonsActions.toggleRightButtonDisabled(!selectedState));
     isSelected.current === true
       ? dispatch(interviewersActions.selectInterviewer(id))
-      : dispatch(pagesActions.toggleInterviewersSelected(null));
+      : dispatch(interviewersActions.selectInterviewer(null))
   };
 
   return (
