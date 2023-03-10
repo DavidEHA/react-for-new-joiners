@@ -1,19 +1,15 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import Interview from './pages/Interview';
 function App() {
 
   return (
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <HomePage/>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+    <MemoryRouter  initialIndex={0}>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/question/:id" element={<Interview />} />
+      </Routes>
+    </MemoryRouter>
   );
 }
 

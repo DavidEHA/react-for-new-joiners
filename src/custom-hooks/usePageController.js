@@ -7,10 +7,12 @@ import { bottomButtonsActions } from "../store/bottom-buttons-slice";
 import { headerActions } from "../store/header-slice";
 import { modalActions } from "../store/modal-slice";
 import { sideButtonsActions } from "../store/side-buttons-slice";
+import { useNavigate } from "react-router";
 
 export const usePageController = () => {
   const [ready, setReady] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const pagesInfo = useSelector((state) => state.pages.info);
   const pageIndex = useSelector((state) => state.pages.pageIndex);
   const candidates = useSelector((state) => state.candidates.info);
@@ -20,11 +22,15 @@ export const usePageController = () => {
     if (candidates.length > 0 && incrementIndex === 2) {
       incrementIndex = 3;
     }
+    if (incrementIndex === 4) {
+      navigate(`/question/${1}`);
+    }
+
     if (incrementIndex >= pages.length) {
       incrementIndex = pages.length - 1;
     }
     dispatch(pagesActions.changePageIndex(incrementIndex));
-  }, [pageIndex, dispatch, candidates]);
+  }, [pageIndex, dispatch, candidates, navigate]);
 
   const prevPage = useCallback(() => {
     let decrementIndex = pageIndex - 1;

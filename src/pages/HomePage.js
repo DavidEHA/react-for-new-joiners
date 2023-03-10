@@ -1,9 +1,8 @@
-// import UserList from "./UserList";
-// import Registration from "./Registration";
-// import Header from "../components/UI/Header";
+import UserList from "./UserList";
+import Registration from "./Registration";
+import Header from "../components/UI/Header";
 import { usePageController } from "../custom-hooks/usePageController";
-// import BottomButtons from "../components/UI/BottomButtons";
-import Interview from "./Interview";
+import BottomButtons from "../components/UI/BottomButtons";
 
 const HomePage = () => {
   const { ready } = usePageController();
@@ -12,11 +11,10 @@ const HomePage = () => {
     <>
       {ready && (
         <>
-          {/* <Header />
+          <Header />
           <Registration />
           <UserList />
-          <BottomButtons /> */}
-          <Interview/>
+          <BottomButtons />
         </>
       )}
     </>
