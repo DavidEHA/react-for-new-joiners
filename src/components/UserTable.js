@@ -11,11 +11,11 @@ export default function DataTable() {
   const candidates = useSelector((state) => state.candidates.info);
 
   const handleRowSelection = (rowSelected) => {
-    if (rowSelected.length > 0){
+    if (rowSelected.length > 0) {
       dispatch(bottomButtonsActions.toggleRightButtonDisabled(false));
       dispatch(sideButtonsActions.toggleShowSideButtons(true));
       dispatch(candidatesActions.selectCandidate(rowSelected[0]));
-      return
+      return;
     }
     dispatch(bottomButtonsActions.toggleRightButtonDisabled(true));
     dispatch(sideButtonsActions.toggleShowSideButtons(false));
