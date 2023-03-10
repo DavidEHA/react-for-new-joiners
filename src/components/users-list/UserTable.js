@@ -1,10 +1,10 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { useSelector } from "react-redux";
-import { candidatesActions } from "../store/candidates-slice";
+import { candidatesActions } from "../../store/candidates-slice";
 import { useDispatch } from "react-redux";
-import { bottomButtonsActions } from "../store/bottom-buttons-slice";
-import { columns } from "../utils/inputs-list";
-import { sideButtonsActions } from "../store/side-buttons-slice";
+import { bottomButtonsActions } from "../../store/bottom-buttons-slice";
+import { columns } from "../../utils/inputs-list";
+import { sideButtonsActions } from "../../store/side-buttons-slice";
 
 export default function DataTable() {
   const dispatch = useDispatch();

@@ -4,9 +4,9 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { bottomButtonsActions } from "../store/bottom-buttons-slice";
-import { interviewersActions } from "../store/interviewers-slice";
-import { sideButtonsActions } from "../store/side-buttons-slice";
+import { bottomButtonsActions } from "../../store/bottom-buttons-slice";
+import { interviewersActions } from "../../store/interviewers-slice";
+import { sideButtonsActions } from "../../store/side-buttons-slice";
 
 const UserCard = () => {
   const dispatch = useDispatch();

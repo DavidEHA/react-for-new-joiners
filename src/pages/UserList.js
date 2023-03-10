@@ -1,12 +1,14 @@
 import * as React from "react";
-import UserCard from "../components/UserCard";
+import UserCard from "../components/users-list/UserCard";
 import { Typography } from "@mui/material";
 import SideButtons from "../components/UI/SideButtons";
 import { useSelector } from "react-redux";
-import UserTable from "../components/UserTable";
+import UserTable from "../components/users-list/UserTable";
+import { useGetTitle } from "../custom-hooks/useGetTitle";
 
 const UserList = () => {
   const pageIndex = useSelector((state) => state.pages.pageIndex);
+  const title = useGetTitle();
 
   return (
     <>
@@ -17,7 +19,7 @@ const UserList = () => {
             color="black"
             gutterBottom
           >
-            Interviewers list
+            {title}
           </Typography>
 
           <div className="user-list-container">
