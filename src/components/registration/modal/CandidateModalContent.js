@@ -10,7 +10,7 @@ import { candidateType } from "../../../utils/data";
 const CandidateModalContent = ({ state, modalDispatch }) => {
   const getValue = (input) => {
     if (state.name === undefined) return "";
-    if (input.id === "name") return state?.name;
+    if (input.id === "name") return state.name;
     if (state.email === undefined) return "";
     if (input.id === "email") return state.email
   };

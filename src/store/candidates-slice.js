@@ -8,8 +8,15 @@ const candidatesSlice = createSlice({
     candidateSelected: null
   },
   reducers: {
-    replaceCandidates(state, action) {
-      state.info = action.payload.info;
+    editCandidate(state, action) {
+      const userId = action.payload.id;
+      const newName = action.payload.name;
+      const newEmail = action.payload.email;
+      const newType = action.payload.type;
+      const userToEdit = state.info.find((user) => user.id === userId);
+      userToEdit.name = newName;
+      userToEdit.email = newEmail;
+      userToEdit.type = newType;
     },
     addUserToCandidates(state, action) {
       const newUser = action.payload;

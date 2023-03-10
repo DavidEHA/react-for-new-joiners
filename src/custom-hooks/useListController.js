@@ -47,5 +47,10 @@ export const useListController = () => {
     candidateSelected,
   ]);
 
-  return { addUser, deleteUser };
+  const editUser = useCallback(() => {
+    dispatch(modalActions.toggleOpenModal(true));
+    dispatch(modalActions.toggleEdit(true));
+  }, [dispatch]);
+
+  return { addUser, deleteUser, editUser };
 };

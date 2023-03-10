@@ -6,7 +6,8 @@ const modalSlice = createSlice({
     open: false,
     userType:"interviewer",
     rightButtonName: "Save",
-    leftButtonName: "Cancel"
+    leftButtonName: "Cancel",
+    edit: false
   },
   reducers: {
     toggleOpenModal(state, action) {
@@ -20,6 +21,9 @@ const modalSlice = createSlice({
     },
     changeModalLeftButtonName(state, action) {
       state.leftButtonName = action.payload
+    },
+    toggleEdit(state, action) {
+      state.edit = action.payload
     },
   },
 });

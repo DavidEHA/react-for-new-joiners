@@ -6,7 +6,7 @@ import { DeleteOutline } from "@mui/icons-material";
 import { useListController } from "../../custom-hooks/useListController";
 
 const SideButtons = () => {
-  const { addUser, deleteUser } = useListController();
+  const { addUser, deleteUser, editUser } = useListController();
   const showSideButtons = useSelector(
     (state) => state.sideButtons.showSideButtons
   );
@@ -27,6 +27,7 @@ const SideButtons = () => {
             title={"Edit user"}
             color="primary"
             style={{ marginBottom: "15px" }}
+            onClick={editUser}
           >
             <EditOutlined />
           </Fab>
