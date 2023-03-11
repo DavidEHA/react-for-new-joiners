@@ -1,8 +1,7 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
-export const InterviewComments = () => {
+const InterviewComments = () => {
   return (
     <Box
       component="form"
@@ -11,12 +10,13 @@ export const InterviewComments = () => {
       }}
     >
       <TextField
-          id="outlined-multiline-static"
-          label="Comments"
-          multiline
-          rows={4}
-          placeholder="..."
+        id="outlined-multiline-static"
+        label="Comments"
+        multiline
+        rows={4}
+        placeholder="..."
       />
     </Box>
   );
-}
+};
+export default InterviewComments;

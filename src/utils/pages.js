@@ -96,10 +96,10 @@ export const pages = [
       showViewFor: USER_ROLES.candidate,
       bottomButtons: {
         rightButtonDisabled: true,
-        rightButtonTitle: RIGHT_BUTTON_NAME.continue,
+        rightButtonTitle: RIGHT_BUTTON_NAME.finalize,
         showRightButton: true,
         showRightButtonIcon: true,
-        showLeftButton: true,
+        showLeftButton: false,
       },
       sideButtons: { showSideButtons: false },
     },

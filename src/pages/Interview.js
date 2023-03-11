@@ -1,10 +1,11 @@
 import { Typography } from "@mui/material";
 import { interviewList } from "../utils/interview-list";
-import { InterviewButtons } from "../components/interview/InterviewButtons";
-import { InterviewComments } from "../components/interview/InterviewComments";
+import InterviewComments from "../components/interview/InterviewComments";
 import Header from "../components/UI/Header";
-import QuestionSelector from "../components/interview/QuestionSelector";
+import QuestionsSelector from "../components/interview/QuestionsSelector";
 import { useParams } from "react-router";
+import BottomButtons from "../components/UI/BottomButtons";
+import InterviewButtons from "../components/interview/InterviewButtons";
 
 const Interview = () => {
   const { id } = useParams();
@@ -25,8 +26,9 @@ const Interview = () => {
         </Typography>
         <InterviewButtons questionNumber={questionNumber}/>
         <InterviewComments />
-        <QuestionSelector />
+        <QuestionsSelector />
       </div>
+      <BottomButtons />
     </>
   );
 };

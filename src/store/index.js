@@ -7,6 +7,7 @@ import modalSlice from "./modal-slice";
 import pagesSlice from "./pages-slice";
 import cardsSlice from "./cards-slice";
 import sideButtonsSlice from "./side-buttons-slice";
+import interviewSlice from "./interview-slice";
 
 const store = configureStore({
   reducer: {
@@ -17,7 +18,8 @@ const store = configureStore({
     modal: modalSlice.reducer,
     pages: pagesSlice.reducer,
     cards: cardsSlice.reducer,
-    sideButtons: sideButtonsSlice.reducer
+    sideButtons: sideButtonsSlice.reducer,
+    interview: interviewSlice.reducer,
   },
 });
 

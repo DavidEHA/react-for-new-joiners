@@ -21,49 +21,33 @@ export const interviewList = [
   {
     topic: topics.reactJS,
     question: questions[1],
-    result: true,
-    comments: "",
   },
   {
     topic: topics.reactJS,
     question: questions[2],
-    result: true,
-    comments: "",
   },
   {
     topic: topics.javascript,
     question: questions[3],
-    result: true,
-    comments: "",
   },
   {
     topic: topics.nodeJS,
     question: questions[4],
-    result: true,
-    comments: "",
   },
   {
     topic: topics.angular,
     question: questions[5],
-    result: true,
-    comments: "",
   },
   {
     topic: topics.angular,
     question: questions[6],
-    result: true,
-    comments: "",
   },
   {
     topic: topics.angular,
     question: questions[7],
-    result: true,
-    comments: "",
   },
   {
     topic: topics.backend,
     question: questions[8],
-    result: true,
-    comments: "",
   },
 ];
