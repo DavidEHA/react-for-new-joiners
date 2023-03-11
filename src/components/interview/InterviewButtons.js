@@ -32,7 +32,6 @@ const InterviewButtons = ({ questionNumber }) => {
     };
     dispatch(interviewActions.uploadResult(result));
   };
-  console.log(questions);
 
   return (
     <>

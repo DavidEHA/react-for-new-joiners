@@ -98,7 +98,7 @@ export const pages = [
         rightButtonDisabled: true,
         rightButtonTitle: RIGHT_BUTTON_NAME.finalize,
         showRightButton: true,
-        showRightButtonIcon: true,
+        showRightButtonIcon: false,
         showLeftButton: false,
       },
       sideButtons: { showSideButtons: false },

@@ -6,10 +6,20 @@ import QuestionsSelector from "../components/interview/QuestionsSelector";
 import { useParams } from "react-router";
 import BottomButtons from "../components/UI/BottomButtons";
 import InterviewButtons from "../components/interview/InterviewButtons";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { bottomButtonsActions } from "../store/bottom-buttons-slice";
 
 const Interview = () => {
+  const dispatch= useDispatch()
   const { id } = useParams();
   const questionNumber = parseInt(id || 1) - 1;
+  const questions = useSelector((state) => state.interview.questions);
+  const rightButtonDisabled = useSelector((state) => state.bottomButtons.rightButtonDisabled);
+
+  if(questions.length > 0 && rightButtonDisabled){
+    dispatch(bottomButtonsActions.toggleRightButtonDisabled(false))
+  }
 
   return (
     <>
