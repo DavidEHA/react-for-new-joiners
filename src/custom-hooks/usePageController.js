@@ -8,6 +8,7 @@ import { headerActions } from "../store/header-slice";
 import { modalActions } from "../store/modal-slice";
 import { sideButtonsActions } from "../store/side-buttons-slice";
 import { useNavigate } from "react-router";
+import { useParams } from "react-router";
 
 export const usePageController = () => {
   const [ready, setReady] = useState(false);
@@ -16,6 +17,7 @@ export const usePageController = () => {
   const pagesInfo = useSelector((state) => state.pages.info);
   const pageIndex = useSelector((state) => state.pages.pageIndex);
   const candidates = useSelector((state) => state.candidates.info);
+  const { id } = useParams();
 
   const nextPage = useCallback(() => {
     let incrementIndex = pageIndex + 1;
@@ -80,10 +82,10 @@ export const usePageController = () => {
   }, [dispatch, pageIndex]);
 
   useEffect(() => {
-    if (pageIndex === 4) {
+    if (pageIndex === 4 && id === undefined) {
       navigate(`/question/${1}`);
     }
-  }, [navigate, pageIndex]);
+  }, [navigate, pageIndex, id]);
 
   useEffect(() => {
     if (pagesInfo === pages[pageIndex]) {
