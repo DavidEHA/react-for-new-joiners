@@ -12,7 +12,7 @@ import { useNavigate } from "react-router";
 export const usePageController = () => {
   const [ready, setReady] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const pagesInfo = useSelector((state) => state.pages.info);
   const pageIndex = useSelector((state) => state.pages.pageIndex);
   const candidates = useSelector((state) => state.candidates.info);
@@ -23,14 +23,14 @@ export const usePageController = () => {
       incrementIndex = 3;
     }
     if (incrementIndex === 4) {
-      navigate(`/question/${1}`);
+      dispatch(pagesActions.changePageIndex(incrementIndex));
     }
 
     if (incrementIndex >= pages.length) {
       incrementIndex = pages.length - 1;
     }
     dispatch(pagesActions.changePageIndex(incrementIndex));
-  }, [pageIndex, dispatch, candidates, navigate]);
+  }, [pageIndex, dispatch, candidates]);
 
   const prevPage = useCallback(() => {
     let decrementIndex = pageIndex - 1;
@@ -78,6 +78,12 @@ export const usePageController = () => {
     dispatch(headerActions.replaceHeader(pages[pageIndex].ui.header.title));
     dispatch(pagesActions.changePage(pages[pageIndex]));
   }, [dispatch, pageIndex]);
+
+  useEffect(() => {
+    if (pageIndex === 4) {
+      navigate(`/question/${1}`);
+    }
+  }, [navigate, pageIndex]);
 
   useEffect(() => {
     if (pagesInfo === pages[pageIndex]) {

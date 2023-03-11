@@ -23,7 +23,7 @@ const Interview = () => {
         >
           {interviewList[questionNumber].question}
         </Typography>
-        <InterviewButtons />
+        <InterviewButtons questionNumber={questionNumber}/>
         <InterviewComments />
         <QuestionSelector />
       </div>
