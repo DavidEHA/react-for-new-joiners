@@ -12,6 +12,7 @@ export const useInterview = () => {
   const questionIndex = id - 1;
   const [comments, setComment] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
+  const [updated, setUpdated] = useState(true);
   const questions = useSelector((state) => state.interview.questions);
   const rightButtonDisabled = useSelector(
     (state) => state.bottomButtons.rightButtonDisabled
@@ -25,6 +26,7 @@ export const useInterview = () => {
         comments: comments,
       };
       dispatch(interviewActions.uploadAnswer(answer));
+      setUpdated(true);
       if (isLastQuestion) return;
       setComment(null);
       setIsCorrect(null);
@@ -32,20 +34,25 @@ export const useInterview = () => {
     [comments, dispatch, isCorrect, id]
   );
 
-  const updateComment = (text) => {
+  const updateComment = (text, isUpdated) => {
     setComment(text);
+    setUpdated(isUpdated)
   };
 
-  const updateAnswer = (answer) => {
+  const updateAnswer = (answer, isUpdated) => {
     const isCorrect = JSON.parse(answer);
     setIsCorrect(isCorrect);
+    setUpdated(isUpdated)
   };
 
   useEffect(() => {
-    if (questions.length === 8 && rightButtonDisabled) {
+    if (questions.length === 8 && rightButtonDisabled && updated) {
       dispatch(bottomButtonsActions.toggleRightButtonDisabled(false));
     }
-  }, [questions, rightButtonDisabled, dispatch]);
+    if (questions.length === 8 && !rightButtonDisabled && !updated) {
+      dispatch(bottomButtonsActions.toggleRightButtonDisabled(true));
+    }
+  }, [questions, rightButtonDisabled, dispatch, updated]);
 
   return {
     submitAnswer,

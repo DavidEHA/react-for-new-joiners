@@ -14,11 +14,11 @@ const InterviewButtons = ({ isCorrect, updateAnswer, submitAnswer }) => {
   useEffect(() => {
     if (question?.answer === undefined) return;
     if (isCorrect !== null) return;
-    updateAnswer(question.answer);
+    updateAnswer(question.answer, true);
   }, [isCorrect, updateAnswer, id, question]);
 
   const handleChange = (result) => {
-    updateAnswer(result);
+    updateAnswer(result, false);
     if (questions.length === 7) submitAnswer({ isLastQuestion: true });
   };
 

@@ -12,7 +12,7 @@ const InterviewComments = ({ comments, updateComment }) => {
   useEffect(() => {
     if (question?.comments === undefined) return;
     if (comments !== null) return;
-    updateComment(question.comments);
+    updateComment(question.comments, true);
   }, [comments, updateComment, id, questions, question]);
 
   return (
@@ -30,7 +30,7 @@ const InterviewComments = ({ comments, updateComment }) => {
         placeholder="..."
         value={comments || ""}
         onChange={(event) => {
-          updateComment(event.target.value);
+          updateComment(event.target.value, false);
         }}
       />
     </Box>
