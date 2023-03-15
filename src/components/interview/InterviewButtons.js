@@ -1,37 +1,21 @@
-import { useDispatch } from "react-redux";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { interviewActions } from "../../store/interview-slice";
 
-const InterviewButtons = ({ questionNumber }) => {
-  const dispatch = useDispatch();
-  const [value, setValue] = useState(null);
+const InterviewButtons = ({ isCorrect, updateAnswer }) => {
+  const { id } = useParams();
   const questions = useSelector((state) => state.interview.questions);
+  const question = questions.find((question) => question.id === id);
 
   useEffect(() => {
-    setValue(null);
-  }, [questionNumber]);
-
-  const handleChange = (event) => {
-    const answer = JSON.parse(event.target.value);
-    setValue(answer);
-
-    const question = questions.find(
-      (question) => question.id === questionNumber
-    );
-
-    const comments = question?.comments || null;
-    const result = {
-      id: questionNumber,
-      result: answer,
-      comments: comments,
-    };
-    dispatch(interviewActions.uploadResult(result));
-  };
+    if (question?.answer === undefined) return;
+    if (isCorrect !== null) return;
+    updateAnswer(question.answer);
+  }, [isCorrect, updateAnswer, id, question]);
 
   return (
     <>
@@ -39,8 +23,8 @@ const InterviewButtons = ({ questionNumber }) => {
         <RadioGroup
           aria-labelledby="radio-buttons-group"
           name="radio-buttons-group"
-          value={value}
-          onChange={handleChange}
+          value={isCorrect}
+          onChange={(event) => updateAnswer(event.target.value)}
           row
         >
           <FormControlLabel value={true} control={<Radio />} label="Correct" />

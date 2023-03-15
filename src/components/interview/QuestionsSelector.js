@@ -3,7 +3,7 @@ import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import { useParams } from "react-router-dom";
 
-const QuestionsSelector = () => {
+const QuestionsSelector = ({ submitAnswer }) => {
   const { id } = useParams();
   const page = parseInt(id || 1);
 
@@ -11,6 +11,7 @@ const QuestionsSelector = () => {
     <Pagination
       page={page}
       count={8}
+      onClick={submitAnswer}
       renderItem={(item) => (
         <PaginationItem
           component={Link}

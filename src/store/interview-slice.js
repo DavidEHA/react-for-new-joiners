@@ -6,21 +6,21 @@ const interviewSlice = createSlice({
     questions: [],
   },
   reducers: {
-    uploadResult(state, action) {
-      const newResult = action.payload.result;
+    uploadAnswer(state, action) {
+      const newAnswer = action.payload.answer;
       const newComment = action.payload.comments;
       const questionId = action.payload.id;
       const questionToEdit = state.questions.find(
         (question) => question.id === questionId
       );
       if (questionToEdit) {
-        questionToEdit.result = newResult;
+        questionToEdit.answer = newAnswer;
         questionToEdit.comments = newComment;
         return;
       }
       state.questions.push({
         id: questionId,
-        result: newResult,
+        answer: newAnswer,
         comments: newComment,
       });
     },
