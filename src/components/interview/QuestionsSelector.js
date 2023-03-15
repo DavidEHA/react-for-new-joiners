@@ -11,7 +11,7 @@ const QuestionsSelector = ({ submitAnswer }) => {
     <Pagination
       page={page}
       count={8}
-      onClick={submitAnswer}
+      onClick={()=>submitAnswer({ isLastQuestion: false })}
       renderItem={(item) => (
         <PaginationItem
           component={Link}

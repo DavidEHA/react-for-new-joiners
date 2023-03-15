@@ -8,9 +8,14 @@ import InterviewButtons from "../components/interview/InterviewButtons";
 import { useInterview } from "../components/interview/useInterview";
 
 const Interview = () => {
-  const { id, comments, updateComment, isCorrect, submitAnswer, updateAnswer } =
-    useInterview();
-  const questionIndex = id - 1;
+  const {
+    questionIndex,
+    comments,
+    updateComment,
+    isCorrect,
+    submitAnswer,
+    updateAnswer,
+  } = useInterview();
 
   return (
     <>
@@ -25,7 +30,11 @@ const Interview = () => {
         >
           {interviewList[questionIndex].question}
         </Typography>
-        <InterviewButtons isCorrect={isCorrect} updateAnswer={updateAnswer} />
+        <InterviewButtons
+          isCorrect={isCorrect}
+          updateAnswer={updateAnswer}
+          submitAnswer={submitAnswer}
+        />
         <InterviewComments comments={comments} updateComment={updateComment} />
         <QuestionsSelector submitAnswer={submitAnswer} />
       </div>

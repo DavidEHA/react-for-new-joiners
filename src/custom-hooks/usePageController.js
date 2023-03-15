@@ -9,7 +9,6 @@ import { modalActions } from "../store/modal-slice";
 import { sideButtonsActions } from "../store/side-buttons-slice";
 import { useNavigate } from "react-router";
 import { useParams } from "react-router";
-import { useInterview } from "../components/interview/useInterview";
 
 export const usePageController = () => {
   const dispatch = useDispatch();
@@ -17,8 +16,6 @@ export const usePageController = () => {
   const pageIndex = useSelector((state) => state.pages.pageIndex);
   const candidates = useSelector((state) => state.candidates.info);
   const { id } = useParams();
-  const { readyToSubmit, submitAnswer } = useInterview({src:"PageController"});
-
 
   const updatePageData = useCallback(
     (index) => {
@@ -70,25 +67,15 @@ export const usePageController = () => {
     if (candidates.length > 0 && incrementIndex === 2) {
       incrementIndex = 3;
     }
-
-    if (readyToSubmit) {
-      submitAnswer(); 
-      incrementIndex = 1;
-    }
-
     if (incrementIndex >= pages.length) {
       incrementIndex = pages.length - 1;
     }
+
+    if (id !== undefined) incrementIndex = 1;
+
     dispatch(pagesActions.changePageIndex(incrementIndex));
     updatePageData(incrementIndex);
-  }, [
-    pageIndex,
-    dispatch,
-    candidates,
-    submitAnswer,
-    readyToSubmit,
-    updatePageData,
-  ]);
+  }, [pageIndex, dispatch, candidates, updatePageData, id]);
 
   const prevPage = useCallback(() => {
     let decrementIndex = pageIndex - 1;
