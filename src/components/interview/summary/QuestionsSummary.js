@@ -1,4 +1,5 @@
-import { Typography } from "@mui/material";
+import { Fab } from "@mui/material";
+import DescriptionIcon from '@mui/icons-material/Description';
 
 const QuestionsSummary = () => {
   const questions = [
@@ -13,15 +14,26 @@ const QuestionsSummary = () => {
   ];
   return (
     <div className="summary-content">
-      <Typography sx={{ fontSize: 18 }} color="text.primary">
-        Questions Correct
-      </Typography>
+      <div
+        className="questions-header"
+      >
+       <div> Questions Correct </div>
+        <Fab
+          title={`See summary`}
+          color="primary"
+          style={{ marginBottom: "-28px"}}
+          // onClick={openModal}
+        >
+          <DescriptionIcon />
+        </Fab>
+      </div>
+
       <hr style={{ width: "100%", marginBottom: "1.5rem" }} />
       {questions.map((result) => (
         <div className="questions">
           <div>{result.topic}</div>
           <div style={result.answer ? { color: "green" } : { color: "red" }}>
-            {result.answer ? "True" : "False"}
+            <i>{result.answer ? "Correct" : "Incorrect"} </i>
           </div>
         </div>
       ))}
