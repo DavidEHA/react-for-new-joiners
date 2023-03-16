@@ -6,7 +6,7 @@ const CandidateInfo = () => {
   const type = "External";
   const interviewedBy = "Jhon";
   return (
-    <div className="summary-content">
+    <div className="summary-content" style={{  marginRight: "2rem"}}>
       <Typography sx={{ fontSize: 18 }} color="text.primary">
         Candidate Infromation
       </Typography>

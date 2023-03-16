@@ -5,7 +5,7 @@ const SkillsList = () => {
   const skills = ["React", "Angular", "Javascript"];
 
   return (
-    <div className="summary-content">
+    <div className="summary-content" style={{  marginRight: "2rem"}}>
       <Typography sx={{ fontSize: 18 }} color="text.primary">
         Skills List
       </Typography>

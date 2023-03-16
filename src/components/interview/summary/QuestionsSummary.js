@@ -14,7 +14,7 @@ const QuestionsSummary = () => {
   return (
     <div className="summary-content">
       <Typography sx={{ fontSize: 18 }} color="text.primary">
-        Questions correct
+        Questions Correct
       </Typography>
       <hr style={{ width: "100%", marginBottom: "1.5rem" }} />
       {questions.map((result) => (
