@@ -113,3 +113,34 @@ body {
   min-width: 35rem;
 }
 
+.summary-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(252, 240, 255);
+}
+
+.summary-categories {
+  display: flex;
+  flex-direction: row;
+  margin: 3rem;
+  height: 100%;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.summary-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-right: 2rem;
+}
+
+.questions {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+  width: 60%;
+  justify-content: space-between;
+}
+
