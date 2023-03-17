@@ -5,18 +5,15 @@ const SkillsList = () => {
   const skills = ["React", "Angular", "Javascript"];
 
   return (
-    <div className="summary-content" style={{  marginRight: "2rem"}}>
+    <div className="summary-content" style={{ marginRight: "2rem" }}>
       <Typography sx={{ fontSize: 18 }} color="text.primary">
         Skills List
       </Typography>
       <hr style={{ width: "100%", marginBottom: "1.5rem" }} />
       {skills.map((skill) => (
-        <Typography sx={{ fontSize: 16, marginBottom: "1rem" }}>
-          <div style={{ marginBottom: "0.5rem" }}>
-            <StarRounded color="disabled" sx={{ marginBottom: "-6px" }} />{" "}
-            {skill}
-          </div>
-        </Typography>
+        <div key={skill} style={{ fontSize: 16, marginBottom: "1rem" }}>
+          <StarRounded color="disabled" sx={{ marginBottom: "-6px" }} /> {skill}
+        </div>
       ))}
     </div>
   );

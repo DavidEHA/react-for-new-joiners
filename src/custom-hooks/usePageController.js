@@ -19,7 +19,7 @@ export const usePageController = () => {
 
   const updatePageData = useCallback(
     (index) => {
-      if (index === 1 && id !== undefined) return navigate("/");
+      if (index === 5 && id !== undefined) return navigate("/");
       if (index === 4 && id === undefined) return navigate(`/question/${1}`);
       dispatch(
         bottomButtonsActions.changeRightButtonTitle(
@@ -71,7 +71,7 @@ export const usePageController = () => {
       incrementIndex = pages.length - 1;
     }
 
-    if (id !== undefined) incrementIndex = 1;
+    if (id !== undefined) incrementIndex = 5;
 
     dispatch(pagesActions.changePageIndex(incrementIndex));
     updatePageData(incrementIndex);

@@ -9,6 +9,7 @@ export const PAGE_NAME = {
   candidateRegistration: "candidate_registration",
   candidateList: "candidate_list",
   interviewQuestions: "interview_questions",
+  summaryOfTheInterview:"summary_of_the_interview"
 };
 
 export const PAGE_TITLE = {
@@ -96,6 +97,22 @@ export const pages = [
       showViewFor: USER_ROLES.candidate,
       bottomButtons: {
         rightButtonDisabled: true,
+        rightButtonTitle: RIGHT_BUTTON_NAME.continue,
+        showRightButton: true,
+        showRightButtonIcon: true,
+        showLeftButton: false,
+      },
+      sideButtons: { showSideButtons: false },
+    },
+  },
+  {
+    key: 5,
+    name: PAGE_NAME.summaryOfTheInterview,
+    ui: {
+      header: { title: PAGE_TITLE.summaryOfTheInterview },
+      showViewFor: USER_ROLES.candidate,
+      bottomButtons: {
+        rightButtonDisabled: false,
         rightButtonTitle: RIGHT_BUTTON_NAME.finalize,
         showRightButton: true,
         showRightButtonIcon: false,
