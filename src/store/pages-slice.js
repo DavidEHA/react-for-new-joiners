@@ -4,7 +4,7 @@ const pagesSlice = createSlice({
   name: "pages",
   initialState: {
     info: {},
-    pageIndex: 5,
+    pageIndex: 0,
   },
   reducers: {
     changePage(state, action) {

@@ -5,7 +5,7 @@ import Header from "../components/UI/Header";
 import QuestionsSelector from "../components/interview/QuestionsSelector";
 import BottomButtons from "../components/UI/BottomButtons";
 import InterviewButtons from "../components/interview/InterviewButtons";
-import { useInterview } from "../components/interview/useInterview";
+import { useInterview } from "../custom-hooks/useInterview";
 
 const Interview = () => {
   const {

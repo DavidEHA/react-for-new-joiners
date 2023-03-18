@@ -1,31 +1,43 @@
 import { Typography } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const CandidateInfo = () => {
-  const name = "David";
-  const email = "David_hernandez@outlook.com";
-  const type = "External";
-  const interviewedBy = "Jhon";
+  const candidateSelected = useSelector(
+    (state) => state.candidates.candidateSelected
+  );
+  const candidates = useSelector((state) => state.candidates.info);
+  const candidate = candidates.find(
+    (candidate) => candidate.id === candidateSelected
+  );
+  const interviewerSelected = useSelector(
+    (state) => state.interviewers.interviewerSelected
+  );
+  const interviewers = useSelector((state) => state.interviewers.info);
+  const interviewer = interviewers.find(
+    (interviewer) => interviewer.id === interviewerSelected
+  );
+
   return (
-    <div className="summary-content" style={{  marginRight: "2rem"}}>
+    <div className="summary-content" style={{ marginRight: "2rem" }}>
       <Typography sx={{ fontSize: 18 }} color="text.primary">
         Candidate Infromation
       </Typography>
       <hr style={{ width: "100%", marginBottom: "1.5rem" }} />
       <Typography sx={{ fontSize: 16 }}>Full Name</Typography>
       <Typography sx={{ fontSize: 12, marginBottom: "1rem" }}>
-        {name}
+        {candidate.name}
       </Typography>
       <Typography sx={{ fontSize: 16 }}>Email</Typography>
       <Typography sx={{ fontSize: 12, marginBottom: "1rem" }}>
-        {email}
+        {candidate.email}
       </Typography>
       <Typography sx={{ fontSize: 16 }}>Type of contract</Typography>
       <Typography sx={{ fontSize: 12, marginBottom: "1rem" }}>
-        {type}
+        {candidate.type}
       </Typography>
       <Typography sx={{ fontSize: 16 }}>Interviewed By</Typography>
       <Typography sx={{ fontSize: 12, marginBottom: "1rem" }}>
-        {interviewedBy}
+        {interviewer.name}
       </Typography>
     </div>
   );

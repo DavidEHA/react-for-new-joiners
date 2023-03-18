@@ -17,11 +17,6 @@ const InterviewButtons = ({ isCorrect, updateAnswer, submitAnswer }) => {
     updateAnswer(question.answer, true);
   }, [isCorrect, updateAnswer, id, question]);
 
-  const handleChange = (result) => {
-    updateAnswer(result, false);
-    if (questions.length === 7) submitAnswer({ isLastQuestion: true });
-  };
-
   return (
     <>
       <FormControl>
@@ -29,7 +24,7 @@ const InterviewButtons = ({ isCorrect, updateAnswer, submitAnswer }) => {
           aria-labelledby="radio-buttons-group"
           name="radio-buttons-group"
           value={isCorrect}
-          onChange={(event) => handleChange(event.target.value)}
+          onChange={(event) => updateAnswer(event.target.value, false)}
           row
         >
           <FormControlLabel value={true} control={<Radio />} label="Correct" />

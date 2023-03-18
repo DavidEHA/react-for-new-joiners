@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { interviewActions } from "../../store/interview-slice";
+import { interviewActions } from "../store/interview-slice";
 import { useParams } from "react-router-dom";
-import { bottomButtonsActions } from "../../store/bottom-buttons-slice";
+import { bottomButtonsActions } from "../store/bottom-buttons-slice";
 import { useCallback, useEffect } from "react";
 
 export const useInterview = () => {
@@ -19,11 +19,11 @@ export const useInterview = () => {
   );
 
   const submitAnswer = useCallback(
-    ({ isLastQuestion }) => {
+    ({ isLastQuestion, lastComment, lastAnswer }) => {
       const answer = {
         id: id,
-        answer: isCorrect,
-        comments: comments,
+        answer: isLastQuestion ? lastAnswer : isCorrect,
+        comments: isLastQuestion ? lastComment : comments,
       };
       dispatch(interviewActions.uploadAnswer(answer));
       setUpdated(true);
@@ -31,18 +31,32 @@ export const useInterview = () => {
       setComment(null);
       setIsCorrect(null);
     },
-    [comments, dispatch, isCorrect, id]
+    [dispatch, id, isCorrect, comments]
   );
 
   const updateComment = (text, isUpdated) => {
     setComment(text);
-    setUpdated(isUpdated)
+    setUpdated(isUpdated);
+    if (id === "8") {
+      submitAnswer({
+        isLastQuestion: true,
+        lastComment: text,
+        lastAnswer: isCorrect,
+      });
+    }
   };
 
   const updateAnswer = (answer, isUpdated) => {
     const isCorrect = JSON.parse(answer);
     setIsCorrect(isCorrect);
-    setUpdated(isUpdated)
+    setUpdated(isUpdated);
+    if (id === "8") {
+      submitAnswer({
+        isLastQuestion: true,
+        lastComment: comments,
+        lastAnswer: isCorrect,
+      });
+    }
   };
 
   useEffect(() => {
