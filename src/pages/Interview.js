@@ -11,8 +11,9 @@ const Interview = () => {
   const {
     questionIndex,
     comments,
-    updateComment,
     isCorrect,
+    question,
+    updateComment,
     submitAnswer,
     updateAnswer,
   } = useInterview();
@@ -33,9 +34,13 @@ const Interview = () => {
         <InterviewButtons
           isCorrect={isCorrect}
           updateAnswer={updateAnswer}
-          submitAnswer={submitAnswer}
+          question={question}
         />
-        <InterviewComments comments={comments} updateComment={updateComment} />
+        <InterviewComments
+          comments={comments}
+          updateComment={updateComment}
+          question={question}
+        />
         <QuestionsSelector submitAnswer={submitAnswer} />
       </div>
       <BottomButtons />

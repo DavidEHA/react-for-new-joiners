@@ -3,7 +3,14 @@ import { useSelector } from "react-redux";
 import { interviewList } from "../../../utils/interview-list";
 
 const QuestionsSummary = () => {
-  const questions = useSelector((state) => state.interview.questions);
+  const candidateSelected = useSelector(
+    (state) => state.candidates.candidateSelected
+  );
+  const candidates = useSelector((state) => state.candidates.info);
+  const candidate = candidates.find(
+    (candidate) => candidate.id === candidateSelected
+  );
+  const questions = candidate.interviewSummary;
   return (
     <div className="summary-content">
       <div className="questions-header">

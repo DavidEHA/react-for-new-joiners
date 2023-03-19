@@ -5,7 +5,7 @@ const candidatesSlice = createSlice({
   initialState: {
     info: [],
     changed: false,
-    candidateSelected: null
+    candidateSelected: null,
   },
   reducers: {
     editCandidate(state, action) {
@@ -22,13 +22,14 @@ const candidatesSlice = createSlice({
       const newUser = action.payload;
       const existingUser = state.info.find((user) => user.id === newUser.id);
       state.changed = true;
-      if (existingUser) return state
+      if (existingUser) return state;
       state.info.push({
         id: newUser.id,
         name: newUser.name,
         email: newUser.email,
         type: newUser.type,
-        interviewedBy: newUser.interviewedBy
+        interviewedBy: newUser.interviewedBy,
+        interviewSummary: [],
       });
     },
     removeUserFromCandidates(state, action) {
@@ -39,6 +40,27 @@ const candidatesSlice = createSlice({
     selectCandidate(state, action) {
       state.candidateSelected = action.payload;
       state.changed = true;
+    },
+    uploadAnswer(state, action) {
+      const userId = action.payload.userId;
+      const newAnswer = action.payload.answer;
+      const newComment = action.payload.comments;
+      const questionId = action.payload.questionId;
+      const existingUser = state.info.find((user) => user.id === userId);
+      if (!existingUser) return;
+      const questionToEdit = existingUser.interviewSummary.find(
+        (question) => question.id === questionId
+      );
+      if (questionToEdit) {
+        questionToEdit.answer = newAnswer;
+        questionToEdit.comments = newComment;
+        return;
+      }
+      state.info[userId].interviewSummary.push({
+        id: questionId,
+        answer: newAnswer,
+        comments: newComment,
+      });
     },
   },
 });

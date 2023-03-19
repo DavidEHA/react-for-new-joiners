@@ -4,12 +4,9 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
 
-const InterviewButtons = ({ isCorrect, updateAnswer, submitAnswer }) => {
+const InterviewButtons = ({ isCorrect, updateAnswer, question }) => {
   const { id } = useParams();
-  const questions = useSelector((state) => state.interview.questions);
-  const question = questions.find((question) => question.id === id);
 
   useEffect(() => {
     if (question?.answer === undefined) return;

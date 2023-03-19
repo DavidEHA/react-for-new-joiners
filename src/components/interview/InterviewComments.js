@@ -2,18 +2,15 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
 
-const InterviewComments = ({ comments, updateComment }) => {
+const InterviewComments = ({ comments, updateComment, question }) => {
   const { id } = useParams();
-  const questions = useSelector((state) => state.interview.questions);
-  const question = questions.find((question) => question.id === id);
 
   useEffect(() => {
     if (question?.comments === undefined) return;
     if (comments !== null) return;
     updateComment(question.comments, true);
-  }, [comments, updateComment, id, questions, question]);
+  }, [comments, updateComment, id, question]);
 
   return (
     <Box
