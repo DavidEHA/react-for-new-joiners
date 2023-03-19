@@ -64,13 +64,16 @@ export const usePageController = () => {
 
   const nextPage = useCallback(() => {
     let incrementIndex = pageIndex + 1;
+    if (incrementIndex === 6) {
+      incrementIndex = 1;
+      return dispatch(pagesActions.changePageIndex(incrementIndex));
+    }
     if (candidates.length > 0 && incrementIndex === 2) {
       incrementIndex = 3;
     }
     if (incrementIndex >= pages.length) {
       incrementIndex = pages.length - 1;
     }
-
     if (id !== undefined) incrementIndex = 5;
 
     dispatch(pagesActions.changePageIndex(incrementIndex));
