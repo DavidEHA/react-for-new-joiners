@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -8,30 +7,46 @@ import { bottomButtonsActions } from "../../store/bottom-buttons-slice";
 import { interviewersActions } from "../../store/interviewers-slice";
 import { sideButtonsActions } from "../../store/side-buttons-slice";
 
+const cardStyle = { width: 310, marginRight: "2rem", marginBottom: "2rem" };
+const cardStyleHighLighted = {
+  width: 310,
+  marginRight: "2rem",
+  marginBottom: "2rem",
+  outline: "#8916c5 solid 2.4px !important",
+};
+
 const UserCard = () => {
   const dispatch = useDispatch();
   const interviewers = useSelector((state) => state.interviewers.info);
-  const isSelected = useRef(false);
+  const interviewerSelected = useSelector(
+    (state) => state.interviewers.interviewerSelected
+  );
 
   const selectInterviewer = (id) => {
-    isSelected.current = !isSelected.current;
-    const selectedState = isSelected.current;
-    dispatch(bottomButtonsActions.toggleRightButtonDisabled(!selectedState));
-    dispatch(sideButtonsActions.toggleShowSideButtons(selectedState));
-    isSelected.current === true
-      ? dispatch(interviewersActions.selectInterviewer(id))
-      : dispatch(interviewersActions.selectInterviewer(null));
+    if (id === interviewerSelected) {
+      dispatch(interviewersActions.selectInterviewer(null));
+      dispatch(bottomButtonsActions.toggleRightButtonDisabled(true));
+      dispatch(sideButtonsActions.toggleShowSideButtons(false));
+      return;
+    }
+    dispatch(interviewersActions.selectInterviewer(id));
+    dispatch(bottomButtonsActions.toggleRightButtonDisabled(false));
+    dispatch(sideButtonsActions.toggleShowSideButtons(true));
   };
 
   return (
-    <div className="interviewers-list">
+    <div className={"interviewers-list"}>
       {interviewers.map((interviewer) => (
         <Card
           onClick={() => {
             selectInterviewer(interviewer.id);
           }}
           key={interviewer.id}
-          sx={{ width: 310, marginRight: "2rem", marginBottom: "2rem" }}
+          sx={
+            interviewer.id === interviewerSelected
+              ? cardStyleHighLighted
+              : cardStyle
+          }
         >
           <CardContent>
             <Typography
