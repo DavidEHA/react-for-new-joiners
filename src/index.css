@@ -165,7 +165,7 @@ body {
 
 .see-more-container {
   display: flex;
-  height: 35rem;
+  height: 30rem;
   width: 100%-4rem; 
   flex-direction: row;
   margin: 4rem;

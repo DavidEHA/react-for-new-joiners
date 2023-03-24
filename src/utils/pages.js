@@ -9,7 +9,8 @@ export const PAGE_NAME = {
   candidateRegistration: "candidate_registration",
   candidateList: "candidate_list",
   interviewQuestions: "interview_questions",
-  summaryOfTheInterview:"summary_of_the_interview"
+  summaryOfTheInterview:"summary_of_the_interview",
+  candidateInformation:"candidate_information"
 };
 
 export const PAGE_TITLE = {
@@ -17,11 +18,13 @@ export const PAGE_TITLE = {
   candidatesDashboard: "Candidates Dashboard",
   interviewQuestions: "Interview Questions",
   summaryOfTheInterview: "Summary of the Interview",
+  candidateInformation:"Candidate Information"
 };
 
 export const RIGHT_BUTTON_NAME = {
   continue: "Continue",
   finalize: "Finalize",
+  save: "Save"
 };
 
 export const pages = [
@@ -114,6 +117,22 @@ export const pages = [
       bottomButtons: {
         rightButtonDisabled: false,
         rightButtonTitle: RIGHT_BUTTON_NAME.finalize,
+        showRightButton: true,
+        showRightButtonIcon: false,
+        showLeftButton: false,
+      },
+      sideButtons: { showSideButtons: false },
+    },
+  },
+  {
+    key: 6,
+    name: PAGE_NAME.candidateInformation,
+    ui: {
+      header: { title: PAGE_TITLE.candidateInformation },
+      showViewFor: USER_ROLES.candidate,
+      bottomButtons: {
+        rightButtonDisabled: false,
+        rightButtonTitle: RIGHT_BUTTON_NAME.save,
         showRightButton: true,
         showRightButtonIcon: false,
         showLeftButton: false,

@@ -5,6 +5,7 @@ import { candidatesActions } from "../store/candidates-slice";
 import { useParams } from "react-router-dom";
 import { bottomButtonsActions } from "../store/bottom-buttons-slice";
 import { useCallback, useEffect } from "react";
+import { interviewList } from "../utils/interview-list";
 
 export const useInterview = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ export const useInterview = () => {
     ({ isLastQuestion, lastComment, lastAnswer }) => {
       const answer = {
         questionId: id,
+        question: interviewList[id-1].question,
         userId: candidateSelected,
         answer: isLastQuestion ? lastAnswer : isCorrect,
         comments: isLastQuestion ? lastComment : comments,

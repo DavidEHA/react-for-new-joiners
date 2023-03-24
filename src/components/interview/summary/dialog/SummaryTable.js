@@ -7,17 +7,18 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Dialog } from "@mui/material";
 import { StyledTableCell, StyledTableRow } from "./styles";
-
-function createData(question, answer, comments) {
-  return { question, answer, comments };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0),
-  createData("Ice cream sandwich", 237, 9.0),
-];
+import { useSelector } from "react-redux";
 
 const SummaryTable = ({ handleClose, open }) => {
+  const candidateSelected = useSelector(
+    (state) => state.candidates.candidateSelected
+  );
+  const candidates = useSelector((state) => state.candidates.info);
+  const candidate = candidates.find(
+    (candidate) => candidate.id === candidateSelected
+  );
+  const questions = candidate.interviewSummary;
+
   return (
     <Dialog maxWidth="lg" onClose={handleClose} open={open}>
       <TableContainer sx={{ minWidth: "1000px" }} component={Paper}>
@@ -30,13 +31,21 @@ const SummaryTable = ({ handleClose, open }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow key={row.question}>
+            {questions.map((question) => (
+              <StyledTableRow key={question.question}>
                 <StyledTableCell component="th" scope="row">
-                  {row.question}
+                  {question.question}
                 </StyledTableCell>
-                <StyledTableCell>{row.answer}</StyledTableCell>
-                <StyledTableCell>{row.comments}</StyledTableCell>
+                <StyledTableCell>
+                  <div
+                    style={
+                      question.answer ? { color: "green" } : { color: "red" }
+                    }
+                  >
+                    <i>{question.answer ? "Correct" : "Incorrect"} </i>
+                  </div>
+                </StyledTableCell>
+                <StyledTableCell>{question.comments}</StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>

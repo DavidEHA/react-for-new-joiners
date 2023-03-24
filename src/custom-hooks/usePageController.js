@@ -68,6 +68,10 @@ export const usePageController = () => {
       incrementIndex = 1;
       return dispatch(pagesActions.changePageIndex(incrementIndex));
     }
+    if (incrementIndex === 7) {
+      incrementIndex = 5;
+      return dispatch(pagesActions.changePageIndex(incrementIndex));
+    }
     if (candidates.length > 0 && incrementIndex === 2) {
       incrementIndex = 3;
     }

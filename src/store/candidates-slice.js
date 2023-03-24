@@ -30,6 +30,7 @@ const candidatesSlice = createSlice({
         type: newUser.type,
         interviewedBy: newUser.interviewedBy,
         interviewSummary: [],
+        skills:[]
       });
     },
     removeUserFromCandidates(state, action) {
@@ -46,6 +47,7 @@ const candidatesSlice = createSlice({
       const newAnswer = action.payload.answer;
       const newComment = action.payload.comments;
       const questionId = action.payload.questionId;
+      const newQuestion = action.payload.question
       const existingUser = state.info.find((user) => user.id === userId);
       if (!existingUser) return;
       const questionToEdit = existingUser.interviewSummary.find(
@@ -58,6 +60,7 @@ const candidatesSlice = createSlice({
       }
       state.info[userId].interviewSummary.push({
         id: questionId,
+        question: newQuestion,
         answer: newAnswer,
         comments: newComment,
       });
