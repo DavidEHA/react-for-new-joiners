@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { candidatesActions } from "../store/candidates-slice";
 import { bottomButtonsActions } from "../store/bottom-buttons-slice";
 import { sideButtonsActions } from "../store/side-buttons-slice";
+import { pagesActions } from "../store/pages-slice";
 
 export const useTable = () => {
   const [order, setOrder] = useState("asc");
@@ -67,6 +68,10 @@ export const useTable = () => {
     });
   };
 
+  const handleSeeMore = (id) => {
+    dispatch(pagesActions.changePageIndex(6));
+  };
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -96,5 +101,6 @@ export const useTable = () => {
     isSelected,
     handleChangePage,
     handleChangeRowsPerPage,
+    handleSeeMore,
   };
 };

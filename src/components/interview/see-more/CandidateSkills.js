@@ -5,11 +5,18 @@ import { ExtensionRounded } from "@mui/icons-material";
 import Button from "@mui/material/Button";
 import { Add } from "@mui/icons-material";
 import { StarRounded } from "@mui/icons-material";
-
+import { useSelector } from "react-redux";
 
 const CandidateSkills = () => {
 
-  const skills = ["React", "Angular", "Javascript"];
+  const candidateSelected = useSelector(
+    (state) => state.candidates.candidateSelected
+  );
+  const candidates = useSelector((state) => state.candidates.info);
+  const candidate = candidates.find(
+    (candidate) => candidate.id === candidateSelected
+  );
+  const skills = candidate.skills;
 
   return (
     <>

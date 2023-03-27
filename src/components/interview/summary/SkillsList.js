@@ -1,8 +1,16 @@
 import { Typography } from "@mui/material";
 import { StarRounded } from "@mui/icons-material";
+import { useSelector } from "react-redux";
 
 const SkillsList = () => {
-  const skills = ["React", "Angular", "Javascript"];
+  const candidateSelected = useSelector(
+    (state) => state.candidates.candidateSelected
+  );
+  const candidates = useSelector((state) => state.candidates.info);
+  const candidate = candidates.find(
+    (candidate) => candidate.id === candidateSelected
+  );
+  const skills = candidate.skills;
 
   return (
     <div className="summary-content" style={{ marginRight: "2rem" }}>

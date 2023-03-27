@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { useTable } from "../../custom-hooks/useTable";
+import { useTable } from "../../../custom-hooks/useTable";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import Button from "@mui/material/Button";
 import TableHeader from "./TableHeader";
@@ -26,6 +26,7 @@ export default function UserTable() {
     isSelected,
     handleChangePage,
     handleChangeRowsPerPage,
+    handleSeeMore,
   } = useTable();
 
   return (
@@ -67,7 +68,10 @@ export default function UserTable() {
                         <TableCell>{candidate.email}</TableCell>
                         <TableCell>{candidate.type}</TableCell>
                         <TableCell>
-                          <Button variant="contained">
+                          <Button
+                            onClick={() => handleSeeMore(candidate.id)}
+                            variant="contained"
+                          >
                             See more{" "}
                             <PermIdentityIcon
                               style={{

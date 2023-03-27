@@ -3,7 +3,7 @@ import UserCard from "../components/users-list/UserCard";
 import { Typography } from "@mui/material";
 import SideButtons from "../components/UI/SideButtons";
 import { useSelector } from "react-redux";
-import UserTable from "../components/users-list/UserTable";
+import UserTable from "../components/users-list/table/UserTable";
 import { useGetTitle } from "../custom-hooks/useGetTitle";
 
 const UserList = () => {
