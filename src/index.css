@@ -108,9 +108,8 @@ body {
   margin-right: 20px;
   margin-bottom: 20px;
   margin-top: 30px;
-  justify-content: center;
   flex-direction: column;
-  min-width: 35rem;
+  width: 88%;
 }
 
 .summary-container {
@@ -170,4 +169,13 @@ body {
   flex-direction: row;
   margin: 4rem;
   justify-content: space-between;
+}
+
+.vl {
+  display: flex;
+  border-left: 2px solid rgb(172, 172, 172);
+  height: 20px;
+  width: 120%;
+  align-items: center;
+  justify-content: center;
 }
