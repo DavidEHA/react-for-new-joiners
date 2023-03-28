@@ -24,6 +24,12 @@ const candidatesSlice = createSlice({
       const userToEdit = state.info.find((user) => user.id === userId);
       userToEdit.skills = newSkills;
     },
+    addInterviewComments(state, action) {
+      const userId = action.payload.id;
+      const newComments = action.payload.comments;
+      const userToEdit = state.info.find((user) => user.id === userId);
+      userToEdit.interviewComments = newComments;
+    },
     addUserToCandidates(state, action) {
       const newUser = action.payload;
       const existingUser = state.info.find((user) => user.id === newUser.id);
@@ -36,6 +42,7 @@ const candidatesSlice = createSlice({
         type: newUser.type,
         interviewedBy: newUser.interviewedBy,
         interviewSummary: [],
+        interviewComments: "",
         skills: [],
       });
     },

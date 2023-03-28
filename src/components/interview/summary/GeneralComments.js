@@ -1,13 +1,29 @@
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-// import { useParams } from "react-router-dom";
-// import { useEffect } from "react";
-// import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { candidatesActions } from "../../../store/candidates-slice";
 
 const GeneralComments = () => {
+  const candidateSelected = useSelector(
+    (state) => state.candidates.candidateSelected
+  );
+  const candidates = useSelector((state) => state.candidates.info);
+  const candidate = candidates.find(
+    (candidate) => candidate.id === candidateSelected
+  );
+  const interviewComments = candidate.interviewComments;
+  const dispatch = useDispatch();
 
-  const generalComments = ""
+  const updateComment = (comments) => {
+    dispatch(
+      candidatesActions.addInterviewComments({
+        id: candidate.id,
+        comments: comments,
+      })
+    );
+  };
 
   return (
     <div className="general-comments">
@@ -16,23 +32,23 @@ const GeneralComments = () => {
       </Typography>
       <hr style={{ width: "100%", marginBottom: "1.5rem" }} />
       <Box
-      component="form"
-      sx={{
-        "& .MuiTextField-root": { marginBottom:"1rem", width: "60%" },
-      }}
-    >
-      <TextField
-        id="outlined-multiline-static"
-        label="Comments"
-        multiline
-        rows={4}
-        placeholder="..."
-        value={generalComments || ""}
-        onChange={(event) => {
-          // updateComment(event.target.value, false);
+        component="form"
+        sx={{
+          "& .MuiTextField-root": { marginBottom: "1rem", width: "60%" },
         }}
-      />
-    </Box>
+      >
+        <TextField
+          id="outlined-multiline-static"
+          label="Comments"
+          multiline
+          rows={4}
+          placeholder="..."
+          value={interviewComments || ""}
+          onChange={(event) => {
+            updateComment(event.target.value);
+          }}
+        />
+      </Box>
     </div>
   );
 };
