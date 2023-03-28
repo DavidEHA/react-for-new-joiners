@@ -25,7 +25,6 @@ const interviewersSlice = createSlice({
         id: newUser.id,
         name: newUser.name,
         eid: newUser.eid,
-        interviewed: 0,
       });
     },
     removeUserFromInterviewers(state, action) {
