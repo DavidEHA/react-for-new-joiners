@@ -7,7 +7,8 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import { Edit } from "@mui/icons-material";
 import { useListController } from "../../../custom-hooks/useListController";
 import RegistrationModal from "../../registration/modal/RegistrationModal";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { pagesActions } from "../../../store/pages-slice";
 
 const cardStyle = {
   minWidth: 650,
@@ -15,21 +16,21 @@ const cardStyle = {
 };
 
 const CandidateDetails = () => {
+  let disableSeeMoreButton = true;
   const candidates = useSelector((state) => state.candidates.info);
-  const candidateSelected = useSelector((state) => state.candidates.candidateSelected);
+  const candidateSelected = useSelector(
+    (state) => state.candidates.candidateSelected
+  );
   const candidate = candidates.find(
     (candidate) => candidate.id === candidateSelected
   );
-
+  const dispatch = useDispatch();
   const { editUser } = useListController();
+  if (candidate.interviewSummary.length > 0) disableSeeMoreButton = false;
 
-  // const candidate = {
-  //   name: "David Emmanuel",
-  //   email: "david_hernandez48@outlook.com",
-  //   type: "External",
-  // };
-
-  const disableSeeMoreButton = true
+  const handleSeeSummary = () => {
+    dispatch(pagesActions.changePageIndex(5));
+  };
 
   return (
     <>
@@ -72,7 +73,12 @@ const CandidateDetails = () => {
             marginBottom: "2rem",
           }}
         >
-          <Button size="medium" variant="contained" disabled={disableSeeMoreButton}>
+          <Button
+            size="medium"
+            variant="contained"
+            disabled={disableSeeMoreButton}
+            onClick={handleSeeSummary}
+          >
             <DescriptionIcon style={{ marginRight: "0.5rem" }} />
             See Summary
           </Button>
