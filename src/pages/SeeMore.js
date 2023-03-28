@@ -1,5 +1,5 @@
 import CandidateDetails from "../components/interview/see-more/CandidateDetails";
-import CandidateSkills from "../components/interview/see-more/CandidateSkills";
+import CandidateSkills from "../components/interview/see-more/candidate-skills/CandidateSkills";
 import { useSelector } from "react-redux";
 
 const SeeMore = () => {
