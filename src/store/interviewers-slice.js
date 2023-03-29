@@ -8,7 +8,12 @@ const interviewersSlice = createSlice({
     interviewerSelected: null,
   },
   reducers: {
+    replaceInterviewers(state, action) {
+      state.info = action.payload.info;
+      state.interviewerSelected = action.payload.interviewerSelected;
+    },
     editInterviewer(state, action) {
+      state.changed = true;
       const userId = action.payload.id;
       const newName = action.payload.name;
       const newEid = action.payload.eid;
@@ -17,9 +22,9 @@ const interviewersSlice = createSlice({
       userToEdit.eid = newEid;
     },
     addUserToInterviewers(state, action) {
+      state.changed = true;
       const newUser = action.payload;
       const existingUser = state.info.find((user) => user.id === newUser.id);
-      state.changed = true;
       if (existingUser) return state;
       state.info.push({
         id: newUser.id,
@@ -28,13 +33,13 @@ const interviewersSlice = createSlice({
       });
     },
     removeUserFromInterviewers(state, action) {
+      state.changed = true;
       const id = action.payload;
       state.info = state.info.filter((user) => user.id !== id);
-      state.changed = true;
     },
     selectInterviewer(state, action) {
-      state.interviewerSelected = action.payload;
       state.changed = true;
+      state.interviewerSelected = action.payload;
     },
   },
 });

@@ -15,8 +15,9 @@ const cardStyle = {
   height: 400,
 };
 
+let disableSeeSummaryButton = true;
+
 const CandidateDetails = () => {
-  let disableSeeMoreButton = true;
   const candidates = useSelector((state) => state.candidates.info);
   const candidateSelected = useSelector(
     (state) => state.candidates.candidateSelected
@@ -26,7 +27,7 @@ const CandidateDetails = () => {
   );
   const dispatch = useDispatch();
   const { editUser } = useListController();
-  if (candidate.interviewSummary.length > 0) disableSeeMoreButton = false;
+  if (candidate.interviewSummary.length > 0) disableSeeSummaryButton = false;
 
   const handleSeeSummary = () => {
     dispatch(pagesActions.changePageIndex(5));
@@ -76,7 +77,7 @@ const CandidateDetails = () => {
           <Button
             size="medium"
             variant="contained"
-            disabled={disableSeeMoreButton}
+            disabled={disableSeeSummaryButton}
             onClick={handleSeeSummary}
           >
             <DescriptionIcon style={{ marginRight: "0.5rem" }} />
