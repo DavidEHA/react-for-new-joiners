@@ -5,7 +5,7 @@ const candidatesSlice = createSlice({
   initialState: {
     info: [],
     changed: false,
-    candidateSelected: null,
+    candidateSelected: "",
   },
   reducers: {
     replaceCandidates(state, action) {

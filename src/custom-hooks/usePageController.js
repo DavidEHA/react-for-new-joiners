@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from "react";
+import { useLayoutEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { pagesActions } from "../store/pages-slice";
 import { pages } from "../utils/pages";
@@ -58,7 +58,7 @@ export const usePageController = () => {
     [dispatch, id, navigate]
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     updatePageData(pageIndex);
   }, [pageIndex, updatePageData]);
 

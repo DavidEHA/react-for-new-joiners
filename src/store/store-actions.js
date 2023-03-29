@@ -1,6 +1,8 @@
 import { interviewersActions } from "./interviewers-slice";
 import { candidatesActions } from "./candidates-slice";
 import { USER_ROLES } from "../utils/pages";
+import { pagesActions } from "./pages-slice";
+import { dataBaseActions } from "./data-base-slice";
 
 export const fetchPageData = () => {
   return async (dispatch) => {
@@ -21,10 +23,12 @@ export const fetchPageData = () => {
         dispatch(
           interviewersActions.replaceInterviewers({
             info: storeData.interviewers.info || [],
-            interviewerSelected:
-              storeData.interviewers.interviewerSelected || null,
+            interviewerSelected: storeData.interviewers.interviewerSelected,
           })
         );
+        if (storeData.interviewers.info.length > 0) {
+          dispatch(pagesActions.changePageIndex(1));
+        }
       }
 
       if (storeData.candidates) {
@@ -41,13 +45,14 @@ export const fetchPageData = () => {
         dispatch(
           candidatesActions.replaceCandidates({
             info: candidates || [],
-            candidateSelected: storeData.candidates.candidateSelected || null,
+            candidateSelected: storeData.candidates.candidateSelected,
           })
         );
       }
     } catch (error) {
       console.log(error);
     }
+    dispatch(dataBaseActions.setInitialized(true));
   };
 };
 
