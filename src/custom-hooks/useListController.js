@@ -4,7 +4,6 @@ import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { modalActions } from "../store/modal-slice";
 import { interviewersActions } from "../store/interviewers-slice";
-import { pagesActions } from "../store/pages-slice";
 import { candidatesActions } from "../store/candidates-slice";
 import { updatePagesStates } from "../store/pages-actions";
 import { usePageActions } from "./usePageActions";
@@ -29,7 +28,6 @@ export const useListController = () => {
   const deleteUser = useCallback(() => {
     if (showInputsFor === USER_ROLES.interviewer) {
       if (interviewers.length <= 1) {
-        dispatch(pagesActions.changePageIndex(0));
         dispatch(
           updatePagesStates(
             0,
@@ -46,7 +44,6 @@ export const useListController = () => {
     }
     if (showInputsFor === USER_ROLES.candidate) {
       if (candidates.length <= 1) {
-        dispatch(pagesActions.changePageIndex(2));
         dispatch(
           updatePagesStates(
             2,

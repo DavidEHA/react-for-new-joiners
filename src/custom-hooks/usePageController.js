@@ -1,6 +1,5 @@
 import { useCallback } from "react";
 import { useSelector } from "react-redux";
-import { pagesActions } from "../store/pages-slice";
 import { pages } from "../utils/pages";
 import { useDispatch } from "react-redux";
 import { updatePagesStates } from "../store/pages-actions";
@@ -33,7 +32,6 @@ export const usePageController = () => {
     }
     if (pageId !== undefined) incrementIndex = 5;
 
-    dispatch(pagesActions.changePageIndex(incrementIndex));
     dispatch(
       updatePagesStates(
         incrementIndex,
@@ -61,7 +59,6 @@ export const usePageController = () => {
     if (decrementIndex <= 1) {
       decrementIndex = 1;
     }
-    dispatch(pagesActions.changePageIndex(decrementIndex));
     dispatch(
       updatePagesStates(
         decrementIndex,

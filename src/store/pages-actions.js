@@ -13,6 +13,7 @@ export const updatePagesStates = (
   navigate
 ) => {
   return async (dispatch) => {
+    dispatch(pagesActions.changePageIndex(index));
     dispatch(
       bottomButtonsActions.changeRightButtonTitle(
         pages[index].ui.bottomButtons.rightButtonTitle

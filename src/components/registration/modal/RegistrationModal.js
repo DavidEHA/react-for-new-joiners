@@ -16,7 +16,6 @@ import { candidatesActions } from "../../../store/candidates-slice";
 import { GENERAL_ACTIONS } from "../../../custom-hooks/useModal";
 import { INITIAL_CANDIDATE_STATE } from "../../../utils/data";
 import { INITIAL_INTERVIEWER_STATE } from "../../../utils/data";
-import { pagesActions } from "../../../store/pages-slice";
 import { updatePagesStates } from "../../../store/pages-actions";
 import { usePageActions } from "../../../custom-hooks/usePageActions";
 
@@ -78,7 +77,6 @@ const RegistrationModal = () => {
         return closeModal();
       }
       dispatch(interviewersActions.addUserToInterviewers({ ...state, id: id }));
-      dispatch(pagesActions.changePageIndex(1));
       dispatch(
         updatePagesStates(
           1,
@@ -95,7 +93,6 @@ const RegistrationModal = () => {
         return closeModal();
       }
       dispatch(candidatesActions.addUserToCandidates({ ...state, id: id }));
-      dispatch(pagesActions.changePageIndex(3));
       dispatch(
         updatePagesStates(
           3,

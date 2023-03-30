@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { candidatesActions } from "../store/candidates-slice";
 import { bottomButtonsActions } from "../store/bottom-buttons-slice";
 import { sideButtonsActions } from "../store/side-buttons-slice";
-import { pagesActions } from "../store/pages-slice";
 import { updatePagesStates } from "../store/pages-actions";
 import { usePageActions } from "./usePageActions";
 export const useTable = () => {
@@ -76,7 +75,6 @@ export const useTable = () => {
 
   const handleSeeMore = (userId) => {
     dispatch(candidatesActions.selectCandidate(userId));
-    dispatch(pagesActions.changePageIndex(6));
     dispatch(
       updatePagesStates(
         6,

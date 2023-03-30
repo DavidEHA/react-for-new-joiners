@@ -8,7 +8,6 @@ import { Edit } from "@mui/icons-material";
 import { useListController } from "../../../custom-hooks/useListController";
 import RegistrationModal from "../../registration/modal/RegistrationModal";
 import { useSelector, useDispatch } from "react-redux";
-import { pagesActions } from "../../../store/pages-slice";
 import { updatePagesStates } from "../../../store/pages-actions";
 import { usePageActions } from "../../../custom-hooks/usePageActions";
 
@@ -34,7 +33,6 @@ const CandidateDetails = () => {
   if (candidate.interviewSummary.length > 0) disableSeeSummaryButton = false;
 
   const handleSeeSummary = () => {
-    dispatch(pagesActions.changePageIndex(5));
     dispatch(
       updatePagesStates(
         5,
