@@ -17,8 +17,11 @@ import { GENERAL_ACTIONS } from "../../../custom-hooks/useModal";
 import { INITIAL_CANDIDATE_STATE } from "../../../utils/data";
 import { INITIAL_INTERVIEWER_STATE } from "../../../utils/data";
 import { pagesActions } from "../../../store/pages-slice";
+import { updatePagesStates } from "../../../store/pages-actions";
+import { usePageActions } from "../../../custom-hooks/usePageActions";
 
 const RegistrationModal = () => {
+  const { pageId, navigate } = usePageActions();
   const openModal = useSelector((state) => state.modal.open);
   const editMode = useSelector((state) => state.modal.edit);
   const showInputsFor = useSelector((state) => state.modal.userType);
@@ -76,6 +79,15 @@ const RegistrationModal = () => {
       }
       dispatch(interviewersActions.addUserToInterviewers({ ...state, id: id }));
       dispatch(pagesActions.changePageIndex(1));
+      dispatch(
+        updatePagesStates(
+          1,
+          pageId,
+          candidateSelected,
+          interviewerSelected,
+          navigate
+        )
+      );
     }
     if (showInputsFor === USER_ROLES.candidate) {
       if (existingCandidate) {
@@ -84,6 +96,15 @@ const RegistrationModal = () => {
       }
       dispatch(candidatesActions.addUserToCandidates({ ...state, id: id }));
       dispatch(pagesActions.changePageIndex(3));
+      dispatch(
+        updatePagesStates(
+          3,
+          pageId,
+          candidateSelected,
+          interviewerSelected,
+          navigate
+        )
+      );
     }
     closeModal();
   };

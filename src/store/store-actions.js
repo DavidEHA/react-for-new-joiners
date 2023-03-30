@@ -3,6 +3,11 @@ import { candidatesActions } from "./candidates-slice";
 import { USER_ROLES } from "../utils/pages";
 import { pagesActions } from "./pages-slice";
 import { dataBaseActions } from "./data-base-slice";
+import { pages } from "../utils/pages";
+import { bottomButtonsActions } from "../store/bottom-buttons-slice";
+import { headerActions } from "../store/header-slice";
+import { modalActions } from "../store/modal-slice";
+import { sideButtonsActions } from "../store/side-buttons-slice";
 
 export const fetchPageData = () => {
   return async (dispatch) => {
@@ -19,35 +24,83 @@ export const fetchPageData = () => {
 
     try {
       const storeData = await fetchData();
-      if (storeData.interviewers) {
-        dispatch(
-          interviewersActions.replaceInterviewers({
-            info: storeData.interviewers.info || [],
-            interviewerSelected: storeData.interviewers.interviewerSelected,
-          })
-        );
-        if (storeData.interviewers.info.length > 0) {
-          dispatch(pagesActions.changePageIndex(1));
+      if (storeData !== null) {
+        if (storeData.interviewers) {
+          dispatch(
+            interviewersActions.replaceInterviewers({
+              info: storeData.interviewers.info || [],
+              interviewerSelected: storeData.interviewers.interviewerSelected,
+            })
+          );
+
+
+
+          let index = 0;
+
+          if (storeData.interviewers.info.length > 0) {
+            index = 1;
+            dispatch(pagesActions.changePageIndex(index));
+          }
+
+          dispatch(
+            bottomButtonsActions.changeRightButtonTitle(
+              pages[index].ui.bottomButtons.rightButtonTitle
+            )
+          );
+          dispatch(modalActions.changeUserType(pages[index].ui.showViewFor));
+          dispatch(
+            bottomButtonsActions.toggleShowLeftButton(
+              pages[index].ui.bottomButtons.showLeftButton
+            )
+          );
+          dispatch(
+            bottomButtonsActions.toggleShowRightButton(
+              pages[index].ui.bottomButtons.showRightButton
+            )
+          );
+          dispatch(
+            bottomButtonsActions.toggleShowRightButtonIcon(
+              pages[index].ui.bottomButtons.showRightButtonIcon
+            )
+          );
+          dispatch(headerActions.replaceHeader(pages[index].ui.header.title));
+          dispatch(pagesActions.changePage(pages[index]));
+
+          if (storeData.interviewers.interviewerSelected !== "") {
+            dispatch(bottomButtonsActions.toggleRightButtonDisabled(false));
+            dispatch(sideButtonsActions.toggleShowSideButtons(true));
+          } else {
+            dispatch(
+              bottomButtonsActions.toggleRightButtonDisabled(
+                pages[index].ui.bottomButtons.rightButtonDisabled
+              )
+            );
+            dispatch(
+              sideButtonsActions.toggleShowSideButtons(
+                pages[index].ui.sideButtons.showSideButtons
+              )
+            );
+          }
         }
-      }
 
-      if (storeData.candidates) {
-        const candidates = storeData.candidates.info.map((candidate) => {
-          if (candidate.interviewSummary === undefined) {
-            candidate.interviewSummary = [];
-          }
-          if (candidate.skills === undefined) {
-            candidate.skills = [];
-          }
-          return candidate;
-        });
+        if (storeData.candidates) {
+          const candidates = storeData.candidates.info.map((candidate) => {
+            if (candidate.interviewSummary === undefined) {
+              candidate.interviewSummary = [];
+            }
+            if (candidate.skills === undefined) {
+              candidate.skills = [];
+            }
+            return candidate;
+          });
 
-        dispatch(
-          candidatesActions.replaceCandidates({
-            info: candidates || [],
-            candidateSelected: storeData.candidates.candidateSelected,
-          })
-        );
+          dispatch(
+            candidatesActions.replaceCandidates({
+              info: candidates || [],
+              candidateSelected: storeData.candidates.candidateSelected,
+            })
+          );
+        }
       }
     } catch (error) {
       console.log(error);

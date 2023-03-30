@@ -1,25 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { candidatesActions } from "../store/candidates-slice";
 import { bottomButtonsActions } from "../store/bottom-buttons-slice";
 import { sideButtonsActions } from "../store/side-buttons-slice";
 import { pagesActions } from "../store/pages-slice";
-
-let initialized = false;
-
+import { updatePagesStates } from "../store/pages-actions";
+import { usePageActions } from "./usePageActions";
 export const useTable = () => {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("id");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const candidates = useSelector((state) => state.candidates.info);
-  const candidateSelected = useSelector((state) => state.candidates.candidateSelected);
-  const [selected, setSelected] = useState(candidateSelected);
-  const rightButtonDisabled = useSelector(
-    (state) => state.bottomButtons.rightButtonDisabled
+  const candidateSelected = useSelector(
+    (state) => state.candidates.candidateSelected
   );
-
+  const [selected, setSelected] = useState(candidateSelected);
+  const { pageId, interviewerSelected, navigate } =
+    usePageActions();
   const dispatch = useDispatch();
 
   function descendingComparator(a, b, orderBy) {
@@ -61,7 +60,6 @@ export const useTable = () => {
   };
 
   const handleClick = (event, id) => {
-    console.log("hello")
     setSelected((prevValue) => {
       if (prevValue === id) {
         dispatch(bottomButtonsActions.toggleRightButtonDisabled(true));
@@ -76,17 +74,18 @@ export const useTable = () => {
     });
   };
 
-  useEffect(() => {
-    if (candidateSelected > -1 && rightButtonDisabled && !initialized) {
-      dispatch(bottomButtonsActions.toggleRightButtonDisabled(false));
-      dispatch(sideButtonsActions.toggleShowSideButtons(true));
-    }
-    initialized = true;
-  }, [candidateSelected, dispatch, rightButtonDisabled]);
-
-  const handleSeeMore = (id) => {
-    dispatch(candidatesActions.selectCandidate(id));
+  const handleSeeMore = (userId) => {
+    dispatch(candidatesActions.selectCandidate(userId));
     dispatch(pagesActions.changePageIndex(6));
+    dispatch(
+      updatePagesStates(
+        6,
+        pageId,
+        candidateSelected,
+        interviewerSelected,
+        navigate
+      )
+    );
   };
 
   const handleChangePage = (event, newPage) => {

@@ -1,76 +1,29 @@
-import { useLayoutEffect, useCallback } from "react";
+import { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { pagesActions } from "../store/pages-slice";
 import { pages } from "../utils/pages";
 import { useDispatch } from "react-redux";
-import { bottomButtonsActions } from "../store/bottom-buttons-slice";
-import { headerActions } from "../store/header-slice";
-import { modalActions } from "../store/modal-slice";
-import { sideButtonsActions } from "../store/side-buttons-slice";
-import { useNavigate } from "react-router";
-import { useParams } from "react-router";
+import { updatePagesStates } from "../store/pages-actions";
+import { usePageActions } from "./usePageActions";
 
 export const usePageController = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const pageIndex = useSelector((state) => state.pages.pageIndex);
   const candidates = useSelector((state) => state.candidates.info);
-  const { id } = useParams();
-
-  const updatePageData = useCallback(
-    (index) => {
-      if (index === 5 && id !== undefined) return navigate("/");
-      if (index === 4 && id === undefined) return navigate(`/question/${1}`);
-      dispatch(
-        bottomButtonsActions.changeRightButtonTitle(
-          pages[index].ui.bottomButtons.rightButtonTitle
-        )
-      );
-      dispatch(modalActions.changeUserType(pages[index].ui.showViewFor));
-      dispatch(
-        bottomButtonsActions.toggleRightButtonDisabled(
-          pages[index].ui.bottomButtons.rightButtonDisabled
-        )
-      );
-      dispatch(
-        bottomButtonsActions.toggleShowLeftButton(
-          pages[index].ui.bottomButtons.showLeftButton
-        )
-      );
-      dispatch(
-        bottomButtonsActions.toggleShowRightButton(
-          pages[index].ui.bottomButtons.showRightButton
-        )
-      );
-      dispatch(
-        bottomButtonsActions.toggleShowRightButtonIcon(
-          pages[index].ui.bottomButtons.showRightButtonIcon
-        )
-      );
-      dispatch(
-        sideButtonsActions.toggleShowSideButtons(
-          pages[index].ui.sideButtons.showSideButtons
-        )
-      );
-      dispatch(headerActions.replaceHeader(pages[index].ui.header.title));
-      dispatch(pagesActions.changePage(pages[index]));
-    },
-    [dispatch, id, navigate]
-  );
-
-  useLayoutEffect(() => {
-    updatePageData(pageIndex);
-  }, [pageIndex, updatePageData]);
+  const {
+    pageId,
+    candidateSelected,
+    interviewerSelected,
+    navigate,
+  } = usePageActions();
 
   const nextPage = useCallback(() => {
     let incrementIndex = pageIndex + 1;
     if (incrementIndex === 6) {
       incrementIndex = 1;
-      return dispatch(pagesActions.changePageIndex(incrementIndex));
     }
     if (incrementIndex === 7) {
       incrementIndex = 3;
-      return dispatch(pagesActions.changePageIndex(incrementIndex));
     }
     if (candidates.length > 0 && incrementIndex === 2) {
       incrementIndex = 3;
@@ -78,11 +31,27 @@ export const usePageController = () => {
     if (incrementIndex >= pages.length) {
       incrementIndex = pages.length - 1;
     }
-    if (id !== undefined) incrementIndex = 5;
+    if (pageId !== undefined) incrementIndex = 5;
 
     dispatch(pagesActions.changePageIndex(incrementIndex));
-    updatePageData(incrementIndex);
-  }, [pageIndex, dispatch, candidates, updatePageData, id]);
+    dispatch(
+      updatePagesStates(
+        incrementIndex,
+        pageId,
+        candidateSelected,
+        interviewerSelected,
+        navigate
+      )
+    );
+  }, [
+    pageIndex,
+    dispatch,
+    candidates,
+    pageId,
+    candidateSelected,
+    interviewerSelected,
+    navigate,
+  ]);
 
   const prevPage = useCallback(() => {
     let decrementIndex = pageIndex - 1;
@@ -93,8 +62,23 @@ export const usePageController = () => {
       decrementIndex = 1;
     }
     dispatch(pagesActions.changePageIndex(decrementIndex));
-    updatePageData(decrementIndex);
-  }, [pageIndex, dispatch, updatePageData]);
+    dispatch(
+      updatePagesStates(
+        decrementIndex,
+        pageId,
+        candidateSelected,
+        interviewerSelected,
+        navigate
+      )
+    );
+  }, [
+    pageIndex,
+    dispatch,
+    pageId,
+    candidateSelected,
+    interviewerSelected,
+    navigate,
+  ]);
 
   return { nextPage, prevPage };
 };

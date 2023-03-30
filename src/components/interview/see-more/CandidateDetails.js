@@ -9,6 +9,8 @@ import { useListController } from "../../../custom-hooks/useListController";
 import RegistrationModal from "../../registration/modal/RegistrationModal";
 import { useSelector, useDispatch } from "react-redux";
 import { pagesActions } from "../../../store/pages-slice";
+import { updatePagesStates } from "../../../store/pages-actions";
+import { usePageActions } from "../../../custom-hooks/usePageActions";
 
 const cardStyle = {
   minWidth: 650,
@@ -18,6 +20,8 @@ const cardStyle = {
 let disableSeeSummaryButton = true;
 
 const CandidateDetails = () => {
+  const { pageId, interviewerSelected, navigate } =
+    usePageActions();
   const candidates = useSelector((state) => state.candidates.info);
   const candidateSelected = useSelector(
     (state) => state.candidates.candidateSelected
@@ -31,6 +35,15 @@ const CandidateDetails = () => {
 
   const handleSeeSummary = () => {
     dispatch(pagesActions.changePageIndex(5));
+    dispatch(
+      updatePagesStates(
+        5,
+        pageId,
+        candidateSelected,
+        interviewerSelected,
+        navigate
+      )
+    );
   };
 
   return (

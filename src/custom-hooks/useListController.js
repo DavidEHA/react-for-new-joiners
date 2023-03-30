@@ -6,6 +6,8 @@ import { modalActions } from "../store/modal-slice";
 import { interviewersActions } from "../store/interviewers-slice";
 import { pagesActions } from "../store/pages-slice";
 import { candidatesActions } from "../store/candidates-slice";
+import { updatePagesStates } from "../store/pages-actions";
+import { usePageActions } from "./usePageActions";
 
 export const useListController = () => {
   const dispatch = useDispatch();
@@ -18,6 +20,7 @@ export const useListController = () => {
   const candidateSelected = useSelector(
     (state) => state.candidates.candidateSelected
   );
+  const { pageId, navigate } = usePageActions();
 
   const addUser = useCallback(() => {
     dispatch(modalActions.toggleOpenModal(true));
@@ -27,6 +30,15 @@ export const useListController = () => {
     if (showInputsFor === USER_ROLES.interviewer) {
       if (interviewers.length <= 1) {
         dispatch(pagesActions.changePageIndex(0));
+        dispatch(
+          updatePagesStates(
+            0,
+            pageId,
+            candidateSelected,
+            interviewerSelected,
+            navigate
+          )
+        );
       }
       dispatch(
         interviewersActions.removeUserFromInterviewers(interviewerSelected)
@@ -35,6 +47,15 @@ export const useListController = () => {
     if (showInputsFor === USER_ROLES.candidate) {
       if (candidates.length <= 1) {
         dispatch(pagesActions.changePageIndex(2));
+        dispatch(
+          updatePagesStates(
+            2,
+            pageId,
+            candidateSelected,
+            interviewerSelected,
+            navigate
+          )
+        );
       }
       dispatch(candidatesActions.removeUserFromCandidates(candidateSelected));
     }
@@ -45,6 +66,8 @@ export const useListController = () => {
     interviewers,
     candidates,
     candidateSelected,
+    pageId,
+    navigate,
   ]);
 
   const editUser = useCallback(() => {

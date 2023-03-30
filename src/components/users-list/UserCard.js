@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { bottomButtonsActions } from "../../store/bottom-buttons-slice";
 import { interviewersActions } from "../../store/interviewers-slice";
 import { sideButtonsActions } from "../../store/side-buttons-slice";
-import { useEffect } from "react";
 
 const cardStyle = {
   width: 310,
@@ -22,16 +21,11 @@ const cardStyleHighLighted = {
   outline: "#8916c5 solid 2.4px !important",
 };
 
-let initialized = false;
-
 const UserCard = () => {
   const dispatch = useDispatch();
   const interviewers = useSelector((state) => state.interviewers.info);
   const interviewerSelected = useSelector(
     (state) => state.interviewers.interviewerSelected
-  );
-  const rightButtonDisabled = useSelector(
-    (state) => state.bottomButtons.rightButtonDisabled
   );
 
   const selectInterviewer = (id) => {
@@ -45,14 +39,6 @@ const UserCard = () => {
     dispatch(bottomButtonsActions.toggleRightButtonDisabled(false));
     dispatch(sideButtonsActions.toggleShowSideButtons(true));
   };
-
-  useEffect(() => {
-    if (interviewerSelected > -1 && rightButtonDisabled && !initialized) {
-      dispatch(bottomButtonsActions.toggleRightButtonDisabled(false));
-      dispatch(sideButtonsActions.toggleShowSideButtons(true));
-    }
-    initialized = true;
-  }, [interviewerSelected, dispatch, rightButtonDisabled]);
 
   return (
     <div className={"interviewers-list"}>
