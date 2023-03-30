@@ -33,15 +33,11 @@ export const fetchPageData = () => {
             })
           );
 
-
-
           let index = 0;
-
           if (storeData.interviewers.info.length > 0) {
             index = 1;
             dispatch(pagesActions.changePageIndex(index));
           }
-
           dispatch(
             bottomButtonsActions.changeRightButtonTitle(
               pages[index].ui.bottomButtons.rightButtonTitle
