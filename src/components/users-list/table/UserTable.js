@@ -53,7 +53,6 @@ export default function UserTable() {
                     return (
                       <TableRow
                         hover
-                        onClick={(event) => handleClick(event, candidate.id)}
                         role="checkbox"
                         aria-checked={isItemSelected}
                         tabIndex={-1}
@@ -61,12 +60,28 @@ export default function UserTable() {
                         selected={isItemSelected}
                         sx={{ cursor: "pointer" }}
                       >
-                        <TableCell component="th" id={labelId}>
+                        <TableCell
+                          onClick={(event) => handleClick(event, candidate.id)}
+                          component="th"
+                          id={labelId}
+                        >
                           {candidate.id}
                         </TableCell>
-                        <TableCell>{candidate.name}</TableCell>
-                        <TableCell>{candidate.email}</TableCell>
-                        <TableCell>{candidate.type}</TableCell>
+                        <TableCell
+                          onClick={(event) => handleClick(event, candidate.id)}
+                        >
+                          {candidate.name}
+                        </TableCell>
+                        <TableCell
+                          onClick={(event) => handleClick(event, candidate.id)}
+                        >
+                          {candidate.email}
+                        </TableCell>
+                        <TableCell
+                          onClick={(event) => handleClick(event, candidate.id)}
+                        >
+                          {candidate.type}
+                        </TableCell>
                         <TableCell>
                           <Button
                             onClick={() => handleSeeMore(candidate.id)}
