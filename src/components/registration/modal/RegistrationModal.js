@@ -18,9 +18,12 @@ import { INITIAL_CANDIDATE_STATE } from "../../../utils/data";
 import { INITIAL_INTERVIEWER_STATE } from "../../../utils/data";
 import { updatePagesStates } from "../../../store/pages-actions";
 import { usePageActions } from "../../../custom-hooks/usePageActions";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const RegistrationModal = () => {
   const { pageId, navigate } = usePageActions();
+  const [emptyInput, setEmptyInput] = useState(true);
   const openModal = useSelector((state) => state.modal.open);
   const editMode = useSelector((state) => state.modal.edit);
   const showInputsFor = useSelector((state) => state.modal.userType);
@@ -106,7 +109,8 @@ const RegistrationModal = () => {
     closeModal();
   };
 
-  if (editMode) {
+  useEffect(() => {
+    if (!editMode) return;
     if (showInputsFor === USER_ROLES.interviewer && interviewerToEdit) {
       modalDispatch({
         type: GENERAL_ACTIONS.editInterviewer,
@@ -121,7 +125,14 @@ const RegistrationModal = () => {
       });
       dispatch(modalActions.toggleEdit(false));
     }
-  }
+  }, [
+    candidateToEdit,
+    dispatch,
+    editMode,
+    interviewerId,
+    interviewerToEdit,
+    showInputsFor,
+  ]);
 
   const closeModal = () => {
     dispatch(modalActions.toggleOpenModal(false));
@@ -132,6 +143,27 @@ const RegistrationModal = () => {
     const id = getId();
     updateUserData(id);
   };
+
+  useEffect(() => {
+    if (showInputsFor === USER_ROLES.interviewer) {
+      setEmptyInput(
+        state.name === "" ||
+          state.name === undefined ||
+          state.eid === "" ||
+          state.eid === undefined
+      );
+    }
+    if (showInputsFor === USER_ROLES.candidate) {
+      setEmptyInput(
+        state.name === "" ||
+          state.name === undefined ||
+          state.email === "" ||
+          state.email === undefined ||
+          state.type === "" ||
+          state.type === undefined
+      );
+    }
+  }, [showInputsFor, state]);
 
   return (
     <>
@@ -163,7 +195,11 @@ const RegistrationModal = () => {
           }}
         >
           <Button onClick={closeModal}>{leftButtonName}</Button>
-          <Button variant="contained" onClick={handleOnSubmit}>
+          <Button
+            variant="contained"
+            disabled={emptyInput}
+            onClick={handleOnSubmit}
+          >
             {rightButtonName}
           </Button>
         </DialogActions>
