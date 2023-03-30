@@ -3,13 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const pagesSlice = createSlice({
   name: "pages",
   initialState: {
-    info: {},
     pageIndex: 0,
   },
   reducers: {
-    changePage(state, action) {
-      state.info = action.payload;
-    },
     changePageIndex(state, action) {
       state.pageIndex = action.payload;
     },

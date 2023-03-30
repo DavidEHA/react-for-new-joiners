@@ -36,7 +36,6 @@ export const updatePagesStates = (
       )
     );
     dispatch(headerActions.replaceHeader(pages[index].ui.header.title));
-    dispatch(pagesActions.changePage(pages[index]));
 
     if (
       ((candidateSelected !== "" && candidateSelected !== null && index === 3) ||

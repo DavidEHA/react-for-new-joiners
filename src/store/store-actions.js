@@ -60,7 +60,6 @@ export const fetchPageData = () => {
             )
           );
           dispatch(headerActions.replaceHeader(pages[index].ui.header.title));
-          dispatch(pagesActions.changePage(pages[index]));
 
           if (storeData.interviewers.interviewerSelected !== "") {
             dispatch(bottomButtonsActions.toggleRightButtonDisabled(false));
