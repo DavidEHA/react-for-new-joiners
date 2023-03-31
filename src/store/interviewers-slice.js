@@ -5,7 +5,7 @@ const interviewersSlice = createSlice({
   initialState: {
     info: [],
     changed: false,
-    interviewerSelected: null,
+    interviewerSelected: "",
   },
   reducers: {
     replaceInterviewers(state, action) {
@@ -36,6 +36,7 @@ const interviewersSlice = createSlice({
       state.changed = true;
       const id = action.payload;
       state.info = state.info.filter((user) => user.id !== id);
+      state.interviewerSelected = "";
     },
     selectInterviewer(state, action) {
       state.changed = true;

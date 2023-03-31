@@ -57,6 +57,7 @@ const candidatesSlice = createSlice({
       state.changed = true;
       const id = action.payload;
       state.info = state.info.filter((user) => user.id !== id);
+      state.candidateSelected = "";
     },
     selectCandidate(state, action) {
       state.changed = true;
