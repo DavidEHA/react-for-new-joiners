@@ -1,10 +1,26 @@
-import { configureStore } from '@reduxjs/toolkit';
-
-import uiSlice from './ui-slice';
-import cartSlice from './cart-slice';
+import { configureStore } from "@reduxjs/toolkit";
+import interviewersSlice from "./interviewers-slice";
+import candidatesSlice from "./candidates-slice";
+import headerSlice from "./header-slice";
+import bottomButtonsSlice from "./bottom-buttons-slice";
+import modalSlice from "./modal-slice";
+import pagesSlice from "./pages-slice";
+import cardsSlice from "./cards-slice";
+import sideButtonsSlice from "./side-buttons-slice";
+import dataBaseSlice from "./data-base-slice";
 
 const store = configureStore({
-  reducer: { ui: uiSlice.reducer, cart: cartSlice.reducer },
+  reducer: {
+    interviewers: interviewersSlice.reducer,
+    candidates: candidatesSlice.reducer,
+    header: headerSlice.reducer,
+    bottomButtons: bottomButtonsSlice.reducer,
+    modal: modalSlice.reducer,
+    pages: pagesSlice.reducer,
+    cards: cardsSlice.reducer,
+    sideButtons: sideButtonsSlice.reducer,
+    dataBase: dataBaseSlice.reducer,
+  },
 });
 
 export default store;

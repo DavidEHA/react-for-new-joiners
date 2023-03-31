@@ -1,22 +1,21 @@
-import { Fragment, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-
-import Cart from './components/Cart/Cart';
-import Layout from './components/Layout/Layout';
-import Products from './components/Shop/Products';
-import Notification from './components/UI/Notification';
-import { sendCartData, fetchCartData } from './store/cart-actions';
+import { MemoryRouter, Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import Interview from "./pages/Interview";
+import { fetchPageData, sendPageData } from "./store/store-actions";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { USER_ROLES } from "./utils/pages";
 
 let isInitial = true;
 
-function App() {
+const App = () => {
   const dispatch = useDispatch();
-  const showCart = useSelector((state) => state.ui.cartIsVisible);
-  const cart = useSelector((state) => state.cart);
-  const notification = useSelector((state) => state.ui.notification);
+  const interviewers = useSelector((state) => state.interviewers);
+  const candidates = useSelector((state) => state.candidates);
+  const isInitialized = useSelector((state) => state.dataBase.isInitialized);
 
   useEffect(() => {
-    dispatch(fetchCartData());
+    dispatch(fetchPageData());
   }, [dispatch]);
 
   useEffect(() => {
@@ -24,27 +23,24 @@ function App() {
       isInitial = false;
       return;
     }
+    if (interviewers.changed)
+      dispatch(
+        sendPageData({ data: interviewers, type: USER_ROLES.interviewer })
+      );
+    if (candidates.changed)
+      dispatch(sendPageData({ data: candidates, type: USER_ROLES.candidate }));
+  }, [interviewers, candidates, dispatch]);
 
-    if (cart.changed) {
-      dispatch(sendCartData(cart));
-    }
-  }, [cart, dispatch]);
+  if (!isInitialized) return <></>;
 
   return (
-    <Fragment>
-      {notification && (
-        <Notification
-          status={notification.status}
-          title={notification.title}
-          message={notification.message}
-        />
-      )}
-      <Layout>
-        {showCart && <Cart />}
-        <Products />
-      </Layout>
-    </Fragment>
+    <MemoryRouter initialIndex={0}>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/question/:id" element={<Interview />} />
+      </Routes>
+    </MemoryRouter>
   );
-}
+};
 
 export default App;
