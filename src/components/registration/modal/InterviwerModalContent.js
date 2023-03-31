@@ -5,9 +5,9 @@ const InterviwerModalContent = ({ state, modalDispatch, interviewerId }) => {
   const getValue = (input) => {
     if (state.id === undefined && input.id === "id") return interviewerId;
     if (input.id === "id" && state.id !== undefined) return state.id;
-    if (state.eid === undefined) return "";
     if (state.name === undefined) return "";
     if (input.id === "name") return state.name;
+    if (state.eid === undefined) return "";
     if (input.id === "eid") return state.eid;
   };
 
